@@ -14,7 +14,7 @@
     <nav>
       <div class="nav__header">
         <div class="nav__logo">
-          <a href="landing.html"><img src="assets/logo.svg" alt="logo" /></a>
+          <a href="landing.php"><img src="assets/logo.svg" alt="logo" /></a>
         </div>
         <div class="nav__menu__btn" id="menu-btn">
           <i class="ri-menu-line"></i>
@@ -23,12 +23,12 @@
       <ul class="nav__links" id="nav-links">
         <div class="nav__buttons">
           <li>
-            <a href="register.html"
+            <a href="register.php"
               ><button class="outlined__btn">Register</button></a
             >
           </li>
           <li>
-            <a href="login.html"><button class="btn">Login</button></a>
+            <a href="login.php"><button class="btn">Login</button></a>
           </li>
         </div>
       </ul>
@@ -83,16 +83,16 @@
           </form>
           <div class="login__divider"><span>OR</span></div>
           <div class="social__buttons">
-            <a href="home.html" class="social__btn">
+            <a href="#" class="social__btn">
               <img src="assets/google.png" alt="Google" />Continue with Google
             </a>
-            <a href="home.html" class="social__btn">
+            <a href="#" class="social__btn">
               <img src="assets/facebook.png" alt="Facebook" />Continue with
               Facebook
             </a>
           </div>
           <p class="signup__text">
-            Don't have an account? <a href="register.html">Register</a>
+            Don't have an account? <a href="register.php">Register</a>
           </p>
         </div>
       </div>

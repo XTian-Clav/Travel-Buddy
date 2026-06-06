@@ -1,3 +1,8 @@
+<?php
+require_once 'includes/config.php';
+require_once 'includes/views/register_view.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,7 +19,7 @@
     <nav>
       <div class="nav__header">
         <div class="nav__logo">
-          <a href="landing.html"><img src="assets/logo.svg" alt="logo" /></a>
+          <a href="landing.php"><img src="assets/logo.svg" alt="logo" /></a>
         </div>
         <div class="nav__menu__btn" id="menu-btn">
           <i class="ri-menu-line"></i>
@@ -23,12 +28,12 @@
       <ul class="nav__links" id="nav-links">
         <div class="nav__buttons">
           <li>
-            <a href="register.html"
+            <a href="register.php"
               ><button class="outlined__btn">Register</button></a
             >
           </li>
           <li>
-            <a href="login.html"><button class="btn">Login</button></a>
+            <a href="login.php"><button class="btn">Login</button></a>
           </li>
         </div>
       </ul>
@@ -41,27 +46,17 @@
           <p class="login__description">
             Fill-up the details to create a new account.
           </p>
-          <form action="YOUR_BACKEND_ENDPOINT_OR_HOME.HTML" method="POST">
+
+          <div id="register-error-msg" class="form-error" style="none;"></div>
+
+          <?php check_register_errors(); ?>
+
+          <form action="includes/register.include.php" method="POST" id="registration-form">
             <div class="input__group">
-              <label for="username">Username</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                placeholder="Enter your username"
-                autocomplete="username"
-                required
-              />
+              <?php register_inputs('username'); ?>
             </div>
             <div class="input__group">
-              <label for="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email"
-                required
-              />
+              <?php register_inputs('email'); ?>
             </div>
             <div class="input__group">
               <label for="password">Password</label>
@@ -69,9 +64,8 @@
                 <input
                   type="password"
                   id="password"
-                  name="password"
+                  name="pwd"
                   placeholder="Enter your password"
-                  required
                 />
                 <button
                   type="button"
@@ -84,19 +78,18 @@
             </div>
 
             <div class="input__group">
-              <label for="confirm-password">Confirm Password</label>
+              <label for="confirm-pwd">Confirm Password</label>
               <div class="password__wrapper">
                 <input
                   type="password"
-                  id="confirm-password"
-                  name="confirm_password"
+                  id="confirm-pwd"
+                  name="confirm_pwd"
                   placeholder="Confirm your password"
-                  required
                 />
                 <button
                   type="button"
                   class="password-toggle-btn"
-                  id="toggle-confirm-password"
+                  id="toggle-confirm-pwd"
                 >
                   <i class="ri-eye-line"></i>
                 </button>
@@ -118,16 +111,16 @@
           </form>
           <div class="login__divider"><span>OR</span></div>
           <div class="social__buttons">
-            <a href="home.html" class="social__btn">
+            <a href="#" class="social__btn">
               <img src="assets/google.png" alt="Google" />Register with Google
             </a>
-            <a href="home.html" class="social__btn">
+            <a href="#" class="social__btn">
               <img src="assets/facebook.png" alt="Facebook" />Register with
               Facebook
             </a>
           </div>
           <p class="signup__text">
-            Already have an account? <a href="login.html">Login</a>
+            Already have an account? <a href="login.php">Login</a>
           </p>
         </div>
       </div>
@@ -141,8 +134,7 @@
 
         <h3>Terms and Conditions</h3>
         <p class="modal__description">
-          Please review our community guidelines and rules before joining Travel
-          Buddy.
+          Please review our community guidelines and rules before joining Travel Buddy.
         </p>
 
         <div
@@ -150,27 +142,28 @@
             max-height: 250px;
             overflow-y: auto;
             margin-bottom: 1.5rem;
-            padding-right: 0.5rem;
+            padding-right: 0.75rem;
             font-size: 0.95rem;
             line-height: 1.5;
             color: #555;
+            text-align: justify;
+            word-break: break-word;
           "
         >
           <p style="margin-bottom: 0.75rem">
-            <strong>1. Account Responsibilities</strong><br />You are
-            responsible for maintaining the confidentiality of your login
-            credentials and for all activities that occur under your profile.
+            <strong>1. Authenticity and Identity</strong><br />To foster a safe environment, you must use the name you use in everyday life and provide accurate information about yourself. Creating fake accounts or misrepresenting your identity is strictly prohibited.
           </p>
           <p style="margin-bottom: 0.75rem">
-            <strong>2. Safe Community Space</strong><br />Travel Buddy is built
-            on trust. Any forms of harassment, fraudulent itinerary listings, or
-            discriminatory behavior will result in immediate account
-            termination.
+            <strong>2. Permissions You Give Us</strong><br />You own the content (like trip photos, reviews, and itineraries) that you create and share on Travel Buddy. However, to provide our service, you grant us a non-exclusive, royalty-free, transferable license to host, use, and display your content.
           </p>
           <p style="margin-bottom: 0.75rem">
-            <strong>3. Itinerary Accuracy</strong><br />While planning
-            adventures with other users, ensure estimated budgets and activity
-            details are coordinated transparently.
+            <strong>3. Community Safety & Prohibited Conduct</strong><br />You may not use our platform to share content that violates our standards—including hate speech, harassment, fraudulent travel postings, or illegal behavior. We reserve the right to remove non-compliant content and suspend accounts.
+          </p>
+          <p style="margin-bottom: 0.75rem">
+            <strong>4. Data Use and Privacy</strong><br />We collect and use your personal data, including location information and travel preferences, to connect you with relevant travel partners. By agreeing to these terms, you acknowledge our data policies.
+          </p>
+          <p style="margin-bottom: 0.75rem">
+            <strong>5. Limitations of Liability</strong><br />We work constantly to provide a secure network, but we provide our platform "as is." We cannot guarantee that Travel Buddy will always be safe, secure, or function without errors, and we are not liable for user actions or off-platform interactions.
           </p>
         </div>
 
@@ -192,9 +185,6 @@
       const acceptTermsBtn = document.getElementById("accept-terms-btn");
       const termsCheckbox = document.getElementById("terms-checkbox");
       const registerForm = document.getElementById("registration-form");
-      const passwordInput = document.getElementById("password");
-      const confirmPasswordInput = document.getElementById("confirm-password");
-      const errorContainer = document.getElementById("register-error-msg");
 
       openTermsBtn.addEventListener("click", (e) => {
         e.preventDefault();
@@ -239,48 +229,14 @@
       };
 
       setupPasswordToggle("toggle-password", "password");
-      setupPasswordToggle("toggle-confirm-password", "confirm-password");
+      setupPasswordToggle("toggle-confirm-pwd", "confirm-pwd");
 
-      registerForm.addEventListener("submit", (e) => {
-        const username = document.getElementById("username").value.trim();
-        const password = passwordInput.value;
-        const confirmPassword = confirmPasswordInput.value;
+      termsCheckbox.addEventListener("invalid", function () {
+        this.setCustomValidity("Please check this box to agree to our Terms and Conditions.");
+      });
 
-        const usernameRegex = /^[a-zA-Z0-9]+$/;
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-
-        errorContainer.style.display = "none";
-
-        if (!usernameRegex.test(username)) {
-          e.preventDefault();
-          errorContainer.textContent =
-            "Username must contain only letters and numbers.";
-          errorContainer.style.display = "block";
-          return;
-        }
-
-        if (username.length < 3) {
-          e.preventDefault();
-          errorContainer.textContent =
-            "Username must be at least 3 characters long.";
-          errorContainer.style.display = "block";
-          return;
-        }
-
-        if (!passwordRegex.test(password)) {
-          e.preventDefault();
-          errorContainer.textContent =
-            "Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, and a number.";
-          errorContainer.style.display = "block";
-          return;
-        }
-
-        if (password !== confirmPassword) {
-          e.preventDefault();
-          errorContainer.textContent = "Passwords do not match!";
-          errorContainer.style.display = "block";
-          return;
-        }
+      termsCheckbox.addEventListener("input", function () {
+        this.setCustomValidity("");
       });
     </script>
   </body>

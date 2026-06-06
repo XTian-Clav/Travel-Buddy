@@ -501,6 +501,37 @@ nav {
   font-weight: 600;
 }
 
+.form-error {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fde8e8;
+  color: #9b1c1c;
+  border: 1px solid #f8b4b4;
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius-small);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.form-success {
+  background-color: #def7ec;
+  color: #03543f;
+  border: 1px solid #84e1bc;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-small);
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.form-error:empty,
+.form-success:empty {
+  display: none !important;
+}
+
 .tour {
   background-color: var(--extra-light);
 }
@@ -919,10 +950,18 @@ nav {
   color: var(--text-light);
 }
 
-.wizard__step.active { border-color: var(--primary-color); }
-.wizard__step.active span { background-color: var(--primary-color); }
-.wizard__step.active p { color: var(--primary-color); }
-.wizard__step.completed span { background-color: #10b981; }
+.wizard__step.active {
+  border-color: var(--primary-color);
+}
+.wizard__step.active span {
+  background-color: var(--primary-color);
+}
+.wizard__step.active p {
+  color: var(--primary-color);
+}
+.wizard__step.completed span {
+  background-color: #10b981;
+}
 
 .wizard__form select,
 .wizard__form input,
@@ -989,8 +1028,12 @@ nav {
   pointer-events: none;
 }
 
-.date__wrapper i { font-size: 1.15rem; }
-.select__wrapper i { font-size: 1.4rem; }
+.date__wrapper i {
+  font-size: 1.15rem;
+}
+.select__wrapper i {
+  font-size: 1.4rem;
+}
 
 .destination-radio,
 .activity-checkbox {

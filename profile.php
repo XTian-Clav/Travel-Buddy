@@ -15,7 +15,7 @@
     <nav>
       <div class="nav__header">
         <div class="nav__logo">
-          <a href="landing.html">
+          <a href="home.php">
             <img src="assets/logo.svg" alt="logo" />
           </a>
         </div>
@@ -24,12 +24,12 @@
         </div>
       </div>
       <ul class="nav__links" id="nav-links">
-        <li><a href="home.html">Home</a></li>
+        <li><a href="home.php">Home</a></li>
         <li><a href="#">About</a></li>
-        <li><a href="profile.html" class="active">Profile</a></li>
+        <li><a href="profile.php" class="active">Profile</a></li>
         <div class="nav__buttons">
           <li>
-            <a href="landing.html"
+            <a href="landing.php"
               ><button class="outlined__btn">
                 <i class="ri-logout-box-r-line"></i>Logout
               </button></a

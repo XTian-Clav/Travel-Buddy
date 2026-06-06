@@ -14,7 +14,7 @@
     <nav>
       <div class="nav__header">
         <div class="nav__logo">
-          <a href="landing.html">
+          <a href="home.php">
             <img src="assets/logo.svg" alt="logo" />
           </a>
         </div>
@@ -25,7 +25,7 @@
       <ul class="nav__links" id="nav-links">
         <div class="nav__buttons">
           <li>
-            <a href="home.html">
+            <a href="home.php">
               <button class="outlined__btn">
                 <i class="ri-arrow-left-line"></i> Back To Home
               </button>
@@ -281,8 +281,8 @@
         <h2>Itinerary Saved!</h2>
         <p>Your trip has been saved to your profile.</p>
         <div class="success__actions">
-          <a href="profile.html" class="success__btn--primary">Go to Profile</a>
-          <a href="home.html" class="success__btn--secondary">Back to Home</a>
+          <a href="profile.php" class="success__btn--primary">Go to Profile</a>
+          <a href="home.php" class="success__btn--secondary">Back to Home</a>
         </div>
       </div>
     </div>

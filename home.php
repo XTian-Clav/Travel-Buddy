@@ -14,7 +14,7 @@
     <nav>
       <div class="nav__header">
         <div class="nav__logo">
-          <a href="landing.html">
+          <a href="home.php">
             <img src="assets/logo.svg" alt="logo" />
           </a>
         </div>
@@ -23,12 +23,12 @@
         </div>
       </div>
       <ul class="nav__links" id="nav-links">
-        <li><a href="home.html" class="active">Home</a></li>
+        <li><a href="home.php" class="active">Home</a></li>
         <li><a href="#">About</a></li>
-        <li><a href="profile.html">Profile</a></li>
+        <li><a href="profile.php">Profile</a></li>
         <div class="nav__buttons">
           <li>
-            <a href="landing.html"
+            <a href="landing.php"
               ><button class="outlined__btn">
                 <i class="ri-logout-box-r-line"></i>Logout
               </button></a
@@ -46,7 +46,7 @@
         </h2>
         <div class="home-hero__actions">
           <button class="hero__btn">Plan your Trip</button>
-          <a href="custom-itinerary.html">
+          <a href="custom-itinerary.php">
             <button class="hero__btn">Customized Itinerary</button>
           </a>
         </div>
@@ -54,7 +54,7 @@
           <span>Choose your Destination</span>
         </div>
         <div class="home-hero__grid">
-          <a href="elnido.html" class="destination-link">
+          <a href="elnido.php" class="destination-link">
             <div class="destination-preview">
               <img src="assets/big-lagoon.jpg" alt="El Nido" />
               <div class="destination-preview__overlay">
@@ -64,7 +64,7 @@
               </div>
             </div>
           </a>
-          <a href="coron.html" class="destination-link">
+          <a href="coron.php" class="destination-link">
             <div class="destination-preview">
               <img src="assets/coron.jpg" alt="Coron" />
               <div class="destination-preview__overlay">

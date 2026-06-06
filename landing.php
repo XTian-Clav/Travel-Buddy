@@ -14,7 +14,7 @@
     <nav>
       <div class="nav__header">
         <div class="nav__logo">
-          <a href="landing.html"><img src="assets/logo.svg" alt="logo" /></a>
+          <a href="landing.php"><img src="assets/logo.svg" alt="logo" /></a>
         </div>
         <div class="nav__menu__btn" id="menu-btn">
           <i class="ri-menu-line"></i>
@@ -23,10 +23,10 @@
       <ul class="nav__links" id="nav-links">
         <div class="nav__buttons">
           <li>
-            <a href="register.html"><button class="outlined__btn">Register</button></a>
+            <a href="register.php"><button class="outlined__btn">Register</button></a>
           </li>
           <li>
-            <a href="login.html"><button class="btn">Login</button></a>
+            <a href="login.php"><button class="btn">Login</button></a>
           </li>
         </div>
       </ul>
