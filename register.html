@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Travel Buddy | Register</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav__header">
+        <div class="nav__logo">
+          <a href="landing.html"><img src="assets/logo.svg" alt="logo" /></a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+          <i class="ri-menu-line"></i>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <div class="nav__buttons">
+          <li>
+            <a href="register.html"
+              ><button class="outlined__btn">Register</button></a
+            >
+          </li>
+          <li>
+            <a href="login.html"><button class="btn">Login</button></a>
+          </li>
+        </div>
+      </ul>
+    </nav>
+
+    <section class="login">
+      <div class="login__container">
+        <div class="login__card">
+          <h2>Register</h2>
+          <p class="login__description">
+            Fill-up the details to create a new account.
+          </p>
+          <form action="YOUR_BACKEND_ENDPOINT_OR_HOME.HTML" method="POST">
+            <div class="input__group">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter your username"
+                autocomplete="username"
+                required
+              />
+            </div>
+            <div class="input__group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div class="input__group">
+              <label for="password">Password</label>
+              <div class="password__wrapper">
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  required
+                />
+                <button
+                  type="button"
+                  class="password-toggle-btn"
+                  id="toggle-password"
+                >
+                  <i class="ri-eye-line"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="input__group">
+              <label for="confirm-password">Confirm Password</label>
+              <div class="password__wrapper">
+                <input
+                  type="password"
+                  id="confirm-password"
+                  name="confirm_password"
+                  placeholder="Confirm your password"
+                  required
+                />
+                <button
+                  type="button"
+                  class="password-toggle-btn"
+                  id="toggle-confirm-password"
+                >
+                  <i class="ri-eye-line"></i>
+                </button>
+              </div>
+            </div>
+            <div class="login__options">
+              <label class="remember">
+                <input
+                  type="checkbox"
+                  name="terms"
+                  id="terms-checkbox"
+                  required
+                />
+                I agree to the
+                <a href="#" id="open-terms-modal">Terms and Conditions</a>
+              </label>
+            </div>
+            <button type="submit" class="btn login__btn">Register</button>
+          </form>
+          <div class="login__divider"><span>OR</span></div>
+          <div class="social__buttons">
+            <a href="home.html" class="social__btn">
+              <img src="assets/google.png" alt="Google" />Register with Google
+            </a>
+            <a href="home.html" class="social__btn">
+              <img src="assets/facebook.png" alt="Facebook" />Register with
+              Facebook
+            </a>
+          </div>
+          <p class="signup__text">
+            Already have an account? <a href="login.html">Login</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="modal__overlay" id="terms-modal">
+      <div class="modal__card" style="max-width: 600px; overflow-y: auto">
+        <button type="button" class="modal__close" id="close-terms-modal">
+          <i class="ri-close-line"></i>
+        </button>
+
+        <h3>Terms and Conditions</h3>
+        <p class="modal__description">
+          Please review our community guidelines and rules before joining Travel
+          Buddy.
+        </p>
+
+        <div
+          style="
+            max-height: 250px;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+            padding-right: 0.5rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #555;
+          "
+        >
+          <p style="margin-bottom: 0.75rem">
+            <strong>1. Account Responsibilities</strong><br />You are
+            responsible for maintaining the confidentiality of your login
+            credentials and for all activities that occur under your profile.
+          </p>
+          <p style="margin-bottom: 0.75rem">
+            <strong>2. Safe Community Space</strong><br />Travel Buddy is built
+            on trust. Any forms of harassment, fraudulent itinerary listings, or
+            discriminatory behavior will result in immediate account
+            termination.
+          </p>
+          <p style="margin-bottom: 0.75rem">
+            <strong>3. Itinerary Accuracy</strong><br />While planning
+            adventures with other users, ensure estimated budgets and activity
+            details are coordinated transparently.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          id="accept-terms-btn"
+          class="wizard__btn wizard__btn--proceed style-submit-btn"
+          style="width: 100%; text-align: center; justify-content: center"
+        >
+          Accept Terms
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const termsModal = document.getElementById("terms-modal");
+      const openTermsBtn = document.getElementById("open-terms-modal");
+      const closeTermsBtn = document.getElementById("close-terms-modal");
+      const acceptTermsBtn = document.getElementById("accept-terms-btn");
+      const termsCheckbox = document.getElementById("terms-checkbox");
+      const registerForm = document.getElementById("registration-form");
+      const passwordInput = document.getElementById("password");
+      const confirmPasswordInput = document.getElementById("confirm-password");
+      const errorContainer = document.getElementById("register-error-msg");
+
+      openTermsBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        termsModal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      });
+
+      const closeTerms = () => {
+        termsModal.classList.remove("active");
+        document.body.style.overflow = "";
+      };
+
+      closeTermsBtn.addEventListener("click", closeTerms);
+
+      termsModal.addEventListener("click", (e) => {
+        if (e.target === termsModal) {
+          closeTerms();
+        }
+      });
+
+      acceptTermsBtn.addEventListener("click", () => {
+        termsCheckbox.checked = true;
+        closeTerms();
+      });
+
+      const setupPasswordToggle = (toggleBtnId, passwordInputId) => {
+        const toggleBtn = document.getElementById(toggleBtnId);
+        const passwordInput = document.getElementById(passwordInputId);
+
+        toggleBtn.addEventListener("click", () => {
+          const icon = toggleBtn.querySelector("i");
+          if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            icon.classList.remove("ri-eye-line");
+            icon.classList.add("ri-eye-off-line");
+          } else {
+            passwordInput.type = "password";
+            icon.classList.remove("ri-eye-off-line");
+            icon.classList.add("ri-eye-line");
+          }
+        });
+      };
+
+      setupPasswordToggle("toggle-password", "password");
+      setupPasswordToggle("toggle-confirm-password", "confirm-password");
+
+      registerForm.addEventListener("submit", (e) => {
+        const username = document.getElementById("username").value.trim();
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+
+        const usernameRegex = /^[a-zA-Z0-9]+$/;
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+        errorContainer.style.display = "none";
+
+        if (!usernameRegex.test(username)) {
+          e.preventDefault();
+          errorContainer.textContent =
+            "Username must contain only letters and numbers.";
+          errorContainer.style.display = "block";
+          return;
+        }
+
+        if (username.length < 3) {
+          e.preventDefault();
+          errorContainer.textContent =
+            "Username must be at least 3 characters long.";
+          errorContainer.style.display = "block";
+          return;
+        }
+
+        if (!passwordRegex.test(password)) {
+          e.preventDefault();
+          errorContainer.textContent =
+            "Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, and a number.";
+          errorContainer.style.display = "block";
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          e.preventDefault();
+          errorContainer.textContent = "Passwords do not match!";
+          errorContainer.style.display = "block";
+          return;
+        }
+      });
+    </script>
+  </body>
+</html>
