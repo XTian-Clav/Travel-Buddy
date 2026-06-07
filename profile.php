@@ -1,3 +1,13 @@
+<?php
+require_once 'includes/config.php';
+require_once 'includes/views/login_view.php';
+
+if (!isset($_SESSION["user_id"])) {
+    header("Location: index.php");
+    die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,7 +39,7 @@
         <li><a href="profile.php" class="active">Profile</a></li>
         <div class="nav__buttons">
           <li>
-            <a href="landing.php"
+            <a href="includes/logout.include.php"
               ><button class="outlined__btn">
                 <i class="ri-logout-box-r-line"></i>Logout
               </button></a
@@ -55,12 +65,12 @@
             <div class="profile__image">
               <img src="assets/profile.png" alt="profile" />
             </div>
-            <h3>Username</h3>
+            <h3><?php output_username(); ?></h3>
             <p>Travel Explorer</p>
             <div class="profile__info">
               <div class="info__item">
                 <span><i class="ri-mail-line"></i></span>
-                <p>username@email.com</p>
+                <p><?php output_email(); ?></p>
               </div>
               <div class="info__item">
                 <span><i class="ri-phone-line"></i></span>

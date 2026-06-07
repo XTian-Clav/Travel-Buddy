@@ -1,3 +1,12 @@
+<?php
+require_once 'includes/config.php';
+
+if (!isset($_SESSION["user_id"])) {
+    header("Location: index.php");
+    die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -28,7 +37,7 @@
         <li><a href="profile.php">Profile</a></li>
         <div class="nav__buttons">
           <li>
-            <a href="landing.php"
+            <a href="includes/logout.include.php"
               ><button class="outlined__btn">
                 <i class="ri-logout-box-r-line"></i>Logout
               </button></a

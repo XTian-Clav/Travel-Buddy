@@ -1,3 +1,8 @@
+<?php
+require_once 'includes/config.php';
+require_once 'includes/views/login_view.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,7 +19,7 @@
     <nav>
       <div class="nav__header">
         <div class="nav__logo">
-          <a href="landing.php"><img src="assets/logo.svg" alt="logo" /></a>
+          <a href="index.php"><img src="assets/logo.svg" alt="logo" /></a>
         </div>
         <div class="nav__menu__btn" id="menu-btn">
           <i class="ri-menu-line"></i>
@@ -41,7 +46,11 @@
           <p class="login__description">
             Login to continue accessing your account.
           </p>
-          <form action="login.php" method="POST">
+
+          <div id="register-error-msg" class="form-error" style="none;"></div>
+          <?php check_login_errors(); ?>
+
+          <form action="includes/login.include.php" method="POST">
             <div class="input__group">
               <label for="username">Username</label>
               <input
@@ -59,7 +68,7 @@
                 <input
                   type="password"
                   id="password"
-                  name="password"
+                  name="pwd"
                   placeholder="Enter your password"
                   required
                 />

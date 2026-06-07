@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 function register_inputs(string $type) {
     if ($type === 'username') {
-        if (isset($_SESSION["register_data"]["username"]) && !isset($_SESSION["error_register"]["username_taken"])) {
+        if (isset($_SESSION["register_data"]["username"]) && !isset($_SESSION["errors_register"]["username_taken"])) {
             echo '<label for="username">Username</label>';
             echo '<input
                 type="text"
@@ -20,7 +20,7 @@ function register_inputs(string $type) {
     }
 
     if ($type === 'email') {
-        if (isset($_SESSION["register_data"]["email"]) && !isset($_SESSION["error_register"]["email_taken"]) && !isset($_SESSION["error_register"]["invalid_email"])) {
+        if (isset($_SESSION["register_data"]["email"]) && !isset($_SESSION["errors_register"]["email_taken"]) && !isset($_SESSION["errors_register"]["invalid_email"])) {
             echo '<label for="email">Email</label>';
             echo '<input
                 type="email"
@@ -36,16 +36,15 @@ function register_inputs(string $type) {
 }
 
 function check_register_errors() {
-    if (isset($_SESSION["error_register"])) {
-        $errors = $_SESSION["error_register"];
+    if (isset($_SESSION["errors_register"])) {
+        $errors = $_SESSION["errors_register"];
         
         foreach ($errors as $error) {
             echo '<div class="form-error">' . $error . '</div>';
         }
 
-        unset($_SESSION["error_register"]);
+        unset($_SESSION["errors_register"]);
     }
-
     else if (isset($_GET["register"]) && $_GET["register"] === "success") {
         echo '<div class="form-success">Registration Successful!</div>';
     }

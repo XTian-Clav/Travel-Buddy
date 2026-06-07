@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         require_once 'config.php';
 
         if ($errors) {
-            $_SESSION["error_register"] = $errors;
+            $_SESSION["errors_register"] = $errors;
 
             $registerData = [
                 "username" => $username,
@@ -65,8 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } catch (PDOException $e) {
         die("Query Failed: " . $e->getMessage());
     }
-}
-else {
-    header("Location: ../landing.php");
+} else {
+    header("Location: ../index.php");
     die();
 }
