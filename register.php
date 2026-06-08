@@ -92,8 +92,7 @@ require_once 'includes/views/register_view.php';
                   id="terms-checkbox"
                   required
                 />
-                I agree to the
-                <a href="#" id="open-terms-modal">Terms and Conditions</a>
+                <span>I agree to the <a href="#" id="open-terms-modal">Terms and Conditions</a></span>
               </label>
             </div>
             <button type="submit" class="btn login__btn">Register</button>
