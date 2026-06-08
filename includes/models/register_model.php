@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function get_username(object $pdo, string $username) {
+function get_username(PDO $pdo, string $username) {
     $query = "SELECT username FROM users WHERE username = :username;";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":username", $username);
@@ -12,7 +12,7 @@ function get_username(object $pdo, string $username) {
     return $result;
 }
 
-function get_email(object $pdo, string $email) {
+function get_email(PDO $pdo, string $email) {
     $query = "SELECT username FROM users WHERE email = :email;";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":email", $email);
@@ -22,7 +22,7 @@ function get_email(object $pdo, string $email) {
     return $result;
 }
 
-function get_contact(object $pdo, string $contact) {
+function get_contact(PDO $pdo, string $contact) {
     $query = "SELECT username FROM users WHERE contact = :contact;";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":contact", $contact);
@@ -32,7 +32,7 @@ function get_contact(object $pdo, string $contact) {
     return $result;
 }
 
-function set_user(object $pdo, string $pwd, string $username, string $email, string $contact, string $address) {
+function set_user(PDO $pdo, string $pwd, string $username, string $email, string $contact, string $address) {
     $query = "INSERT INTO users (username, pwd, email, contact, address) VALUES (:username, :pwd, :email, :contact, :address);";
     $stmt = $pdo->prepare($query);
 

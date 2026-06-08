@@ -1,6 +1,7 @@
 <?php
 require_once 'includes/config.php';
 require_once 'includes/auth.php';
+require_once 'includes/profile.include.php';
 require_once 'includes/views/login_view.php';
 ?>
 
@@ -92,45 +93,32 @@ require_once 'includes/views/login_view.php';
             </button>
           </div>
           <div class="trip__grid">
-            <div class="trip__card">
-              <img src="assets/big-lagoon.webp" alt="trip" />
-              <div class="trip__details">
-                <div>
-                  <h3>El Nido Getaway 2026</h3>
-                  <p>3 Days • Relax & Explore</p>
+            <?php check_profile_errors(); ?>
+            <?php if (has_no_trips($trips)): ?>
+              <p>No saved trips yet.</p>
+            <?php else: ?>
+              <?php foreach ($trips as $trip): ?>
+                <div class="trip__card">
+                  <img src="<?php echo output_trip_image($trip['destination']); ?>" alt="trip" />
+                  <div class="trip__details">
+                    <div>
+                      <h3><?php echo htmlspecialchars($trip['itinerary_name']); ?></h3>
+                      <p>
+                        <?php echo $trip['total_days']; ?> Days •
+                        <?php echo $trip['total_activities']; ?> Activities
+                      </p>
+                    </div>
+                    <div class="trip__actions">
+                      <button class="btn">View Details</button>
+                      <a href="profile.php?action=delete&trip_id=<?php echo $trip['id']; ?>"
+                        onclick="return confirm('Are you sure you want to delete this trip?')">
+                        <button class="outlined__btn">Delete</button>
+                      </a>
+                    </div>
+                  </div>
                 </div>
-                <div class="trip__actions">
-                  <button class="btn">View Details</button>
-                  <button class="outlined__btn">Delete</button>
-                </div>
-              </div>
-            </div>
-            <div class="trip__card">
-              <img src="assets/coron.webp" alt="trip" />
-              <div class="trip__details">
-                <div>
-                  <h3>Coron Island Adventure</h3>
-                  <p>5 Days • Island Hopping</p>
-                </div>
-                <div class="trip__actions">
-                  <button class="btn">View Details</button>
-                  <button class="outlined__btn">Delete</button>
-                </div>
-              </div>
-            </div>
-            <div class="trip__card">
-              <img src="assets/bacuit-bay.webp" alt="trip" />
-              <div class="trip__details">
-                <div>
-                  <h3>Bacuit Bay Experience</h3>
-                  <p>3 Days • Beach Escape</p>
-                </div>
-                <div class="trip__actions">
-                  <button class="btn">View Details</button>
-                  <button class="outlined__btn">Delete</button>
-                </div>
-              </div>
-            </div>
+              <?php endforeach; ?>
+            <?php endif; ?>
           </div>
         </div>
       </div>
