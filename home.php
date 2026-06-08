@@ -61,7 +61,7 @@ require_once 'includes/auth.php';
         <div class="home-hero__grid">
           <a href="elnido.php" class="destination-link">
             <div class="destination-preview">
-              <img src="assets/big-lagoon.jpg" alt="El Nido" />
+              <img src="assets/big-lagoon.webp" alt="El Nido" />
               <div class="destination-preview__overlay">
                 <div class="destination-preview__badge">
                   El Nido <i class="ri-arrow-right-line"></i>
@@ -71,7 +71,7 @@ require_once 'includes/auth.php';
           </a>
           <a href="coron.php" class="destination-link">
             <div class="destination-preview">
-              <img src="assets/coron.jpg" alt="Coron" />
+              <img src="assets/coron.webp" alt="Coron" />
               <div class="destination-preview__overlay">
                 <div class="destination-preview__badge">
                   Coron <i class="ri-arrow-right-line"></i>

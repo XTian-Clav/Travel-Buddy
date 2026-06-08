@@ -8,3 +8,31 @@ CREATE TABLE users (
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE saved_trips (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_id INT UNSIGNED NOT NULL,
+    trip_type ENUM('predefined', 'custom') NOT NULL,
+    itinerary_name VARCHAR(100) NOT NULL,
+    destination VARCHAR(100) NOT NULL,
+    start_date DATE DEFAULT NULL,
+    end_date DATE DEFAULT NULL,
+    travelers INT UNSIGNED DEFAULT NULL,
+    total_days INT UNSIGNED DEFAULT NULL,
+    total_activities INT UNSIGNED DEFAULT 0,
+    estimated_budget DECIMAL(10,2) DEFAULT 0.00,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE trip_activities (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    trip_id INT UNSIGNED NOT NULL,
+    day_number INT UNSIGNED NOT NULL,
+    activity_name VARCHAR(100) NOT NULL,
+    activity_price DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    FOREIGN KEY (trip_id) REFERENCES saved_trips(id) ON DELETE CASCADE
+);

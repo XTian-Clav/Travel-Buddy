@@ -93,7 +93,7 @@ require_once 'includes/views/login_view.php';
           </div>
           <div class="trip__grid">
             <div class="trip__card">
-              <img src="assets/big-lagoon.jpg" alt="trip" />
+              <img src="assets/big-lagoon.webp" alt="trip" />
               <div class="trip__details">
                 <div>
                   <h3>El Nido Getaway 2026</h3>
@@ -106,7 +106,7 @@ require_once 'includes/views/login_view.php';
               </div>
             </div>
             <div class="trip__card">
-              <img src="assets/coron.jpg" alt="trip" />
+              <img src="assets/coron.webp" alt="trip" />
               <div class="trip__details">
                 <div>
                   <h3>Coron Island Adventure</h3>
@@ -119,7 +119,7 @@ require_once 'includes/views/login_view.php';
               </div>
             </div>
             <div class="trip__card">
-              <img src="assets/bacuit-bay.jpg" alt="trip" />
+              <img src="assets/bacuit-bay.webp" alt="trip" />
               <div class="trip__details">
                 <div>
                   <h3>Bacuit Bay Experience</h3>

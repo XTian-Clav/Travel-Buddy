@@ -65,7 +65,7 @@ require_once 'includes/auth.php';
 
         <div class="itinerary__grid">
           <div class="itinerary__card">
-            <img src="assets/elnido-itinerary-a.jpg" alt="Itinerary A" />
+            <img src="assets/elnido-itinerary-a.webp" alt="Itinerary A" />
             <div class="itinerary__content">
               <h4>Itinerary A</h4>
               <p class="itinerary__description">Relaxing & Explore</p>
@@ -111,7 +111,7 @@ require_once 'includes/auth.php';
           </div>
 
           <div class="itinerary__card">
-            <img src="assets/elnido-itinerary-b.jpg" alt="Itinerary B" />
+            <img src="assets/elnido-itinerary-b.webp" alt="Itinerary B" />
             <div class="itinerary__content">
               <h4>Itinerary B</h4>
               <p class="itinerary__description">Island Hopping Adventure</p>
@@ -157,7 +157,7 @@ require_once 'includes/auth.php';
           </div>
 
           <div class="itinerary__card">
-            <img src="assets/elnido-itinerary-c.jpg" alt="Itinerary C" />
+            <img src="assets/elnido-itinerary-c.webp" alt="Itinerary C" />
             <div class="itinerary__content">
               <h4>Itinerary C</h4>
               <p class="itinerary__description">Premium Leisure Experience</p>

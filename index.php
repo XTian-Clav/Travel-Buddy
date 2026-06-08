@@ -61,7 +61,7 @@ require_once 'includes/guest.php';
         </div>
         <div class="tour__grid">
           <div class="tour__card">
-            <img src="assets/big-lagoon.jpg" alt="El Nido Tour" />
+            <img src="assets/big-lagoon.webp" alt="El Nido Tour" />
             <div class="tour__overlay">
               <div class="tour__badge">
                 <span>El Nido Tour</span>
@@ -70,7 +70,7 @@ require_once 'includes/guest.php';
             </div>
           </div>
           <div class="tour__card">
-            <img src="assets/coron.jpg" alt="Coron Tour" />
+            <img src="assets/coron.webp" alt="Coron Tour" />
             <div class="tour__overlay">
               <div class="tour__badge">
                 <span>Coron Island Tour</span>
@@ -79,7 +79,7 @@ require_once 'includes/guest.php';
             </div>
           </div>
           <div class="tour__card">
-            <img src="assets/baywalk.jpg" alt="Puerto Princesa Tour" />
+            <img src="assets/baywalk.webp" alt="Puerto Princesa Tour" />
             <div class="tour__overlay">
               <div class="tour__badge">
                 <span>Puerto Princesa City Tour</span>

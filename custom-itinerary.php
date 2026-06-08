@@ -94,9 +94,9 @@ require_once 'includes/auth.php';
                   name="destination"
                   value="El Nido"
                   class="destination-radio"
-                  data-img="assets/big-lagoon.jpg"
+                  data-img="assets/big-lagoon.webp"
                 />
-                <img src="assets/big-lagoon.jpg" alt="El Nido" />
+                <img src="assets/big-lagoon.webp" alt="El Nido" />
                 <div class="wizard__destination__overlay">
                   <div class="wizard__destination__badge">
                     El Nido <i class="ri-arrow-right-line"></i>
@@ -110,9 +110,9 @@ require_once 'includes/auth.php';
                   name="destination"
                   value="Coron"
                   class="destination-radio"
-                  data-img="assets/coron.jpg"
+                  data-img="assets/coron.webp"
                 />
-                <img src="assets/coron.jpg" alt="Coron" />
+                <img src="assets/coron.webp" alt="Coron" />
                 <div class="wizard__destination__overlay">
                   <div class="wizard__destination__badge">
                     Coron <i class="ri-arrow-right-line"></i>
@@ -127,7 +127,7 @@ require_once 'includes/auth.php';
               <div class="wizard__sidebar">
                 <div class="wizard__destination">
                   <img
-                    src="assets/big-lagoon.jpg"
+                    src="assets/big-lagoon.webp"
                     alt="Destination Preview"
                     id="selected-dest-preview"
                   />
@@ -217,7 +217,7 @@ require_once 'includes/auth.php';
                 <h3>Trip Summary</h3>
                 <div class="trip__card stacked-summary-card">
                   <img
-                    src="assets/big-lagoon.jpg"
+                    src="assets/big-lagoon.webp"
                     alt="Destination Preview"
                     id="summary-dest-img"
                   />
@@ -368,42 +368,42 @@ require_once 'includes/auth.php';
           title: "Kayaking",
           desc: "Paddle through calm and scenic coastlines.",
           price: 1500,
-          img: "assets/kayaking.jpg",
+          img: "assets/kayaking.webp",
         },
         {
           id: "beach-day",
           title: "Beach Day Out",
           desc: "Relax, swim, and sunbathe on golden sands.",
           price: 2000,
-          img: "assets/nacpan.jpg",
+          img: "assets/nacpan.webp",
         },
         {
           id: "snorkeling",
           title: "Private Snorkeling",
           desc: "Explore vibrant marine life with a personal guide.",
           price: 3800,
-          img: "assets/snorkeling.jpg",
+          img: "assets/snorkeling.webp",
         },
         {
           id: "sunset-dinner",
           title: "Sunset Dinner",
           desc: "Savor a beachfront multi-course meal at sunset.",
           price: 1200,
-          img: "assets/sunset-dinner.jpg",
+          img: "assets/sunset-dinner.webp",
         },
         {
           id: "island-hopping",
           title: "Island Hopping Tour",
           desc: "Cruise to hidden beaches and tropical lagoons.",
           price: 2800,
-          img: "assets/island-tour.jpg",
+          img: "assets/island-tour.webp",
         },
         {
           id: "spa",
           title: "Spa & Massage",
           desc: "Unwind with a premium relaxation treatment.",
           price: 1500,
-          img: "assets/spa.jpg",
+          img: "assets/spa.webp",
         },
       ];
 
@@ -531,7 +531,7 @@ require_once 'includes/auth.php';
         }, Palawan`;
         document.getElementById("summary-dest-img").src = selectedDest
           ? selectedDest.getAttribute("data-img")
-          : "assets/big-lagoon.jpg";
+          : "assets/big-lagoon.webp";
 
         const rawStart = document.getElementById("start_date").value;
         const rawEnd = document.getElementById("end_date").value;

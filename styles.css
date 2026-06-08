@@ -224,7 +224,7 @@ nav {
   width: 100%;
   aspect-ratio: 16 / 9;
   min-height: 500px;
-  background-image: url("assets/bg-elnido.jpg");
+  background-image: url("assets/bg-elnido.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -673,7 +673,7 @@ nav {
   min-height: 100vh;
   padding: 8rem 2rem 4rem;
   background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)),
-    url("assets/bg-home.jpg");
+    url("assets/bg-home.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -843,7 +843,7 @@ nav {
   width: 100%;
   min-height: 500px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)),
-    url("assets/bacuit-bay.jpg");
+    url("assets/bacuit-bay.webp");
 
   background-size: cover;
   background-position: center;
@@ -1354,11 +1354,11 @@ nav {
 }
 
 .bg-elnido {
-  background-image: url("assets/bg-hero-elnido.jpg");
+  background-image: url("assets/bg-hero-elnido.webp");
 }
 
 .bg-coron {
-  background-image: url("assets/bg-hero-coron.jpg");
+  background-image: url("assets/bg-hero-coron.webp");
 }
 
 .palawan__hero::before {
@@ -1395,7 +1395,7 @@ nav {
 
 .itinerary {
   background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.45)),
-    url("assets/bg-home.jpg");
+    url("assets/bg-home.webp");
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1572,7 +1572,7 @@ nav {
 .profile__hero {
   width: 100%;
   min-height: 350px;
-  background-image: url("assets/bg-profile.jpg");
+  background-image: url("assets/bg-profile.webp");
   background-size: cover;
   background-position: center;
   position: relative;

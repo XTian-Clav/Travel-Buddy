@@ -65,7 +65,7 @@ require_once 'includes/auth.php';
 
         <div class="itinerary__grid">
           <div class="itinerary__card">
-            <img src="assets/itinerary-a-coron.jpg" alt="Itinerary A" />
+            <img src="assets/itinerary-a-coron.webp" alt="Itinerary A" />
             <div class="itinerary__content">
               <h4>Itinerary A</h4>
               <p class="itinerary__description">Town Eco-Tour & Hot Springs</p>
@@ -111,7 +111,7 @@ require_once 'includes/auth.php';
           </div>
 
           <div class="itinerary__card">
-            <img src="assets/itinerary-b-coron.jpg" alt="Itinerary B" />
+            <img src="assets/itinerary-b-coron.webp" alt="Itinerary B" />
             <div class="itinerary__content">
               <h4>Itinerary B</h4>
               <p class="itinerary__description">Ultimate Island Hopping Tour</p>
@@ -157,7 +157,7 @@ require_once 'includes/auth.php';
           </div>
 
           <div class="itinerary__card">
-            <img src="assets/itinerary-c-coron.jpg" alt="Itinerary C" />
+            <img src="assets/itinerary-c-coron.webp" alt="Itinerary C" />
             <div class="itinerary__content">
               <h4>Itinerary C</h4>
               <p class="itinerary__description">Premium Reefs & Shipwrecks</p>
