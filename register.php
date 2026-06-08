@@ -1,5 +1,6 @@
 <?php
 require_once 'includes/config.php';
+require_once 'includes/guest.php';
 require_once 'includes/views/register_view.php';
 ?>
 
@@ -14,6 +15,9 @@ require_once 'includes/views/register_view.php';
     />
     <link rel="stylesheet" href="styles.css" />
     <title>Travel Buddy | Register</title>
+
+    <script src="js/password-toggle.js" defer></script>
+    <script src="js/terms-modal.js" defer></script>
   </head>
   <body>
     <nav>
@@ -47,15 +51,20 @@ require_once 'includes/views/register_view.php';
             Fill-up the details to create a new account.
           </p>
 
-          <div id="register-error-msg" class="form-error" style="none;"></div>
           <?php check_register_errors(); ?>
 
-          <form action="includes/register.include.php" method="POST" id="registration-form">
+          <form action="includes/register.include.php" method="POST">
             <div class="input__group">
               <?php register_inputs('username'); ?>
             </div>
             <div class="input__group">
               <?php register_inputs('email'); ?>
+            </div>
+            <div class="input__group">
+              <?php register_inputs('contact'); ?>
+            </div>
+            <div class="input__group">
+              <?php register_inputs('address'); ?>
             </div>
             <div class="input__group">
               <label for="password">Password</label>
@@ -68,27 +77,8 @@ require_once 'includes/views/register_view.php';
                 />
                 <button
                   type="button"
-                  class="password-toggle-btn"
-                  id="toggle-password"
-                >
-                  <i class="ri-eye-line"></i>
-                </button>
-              </div>
-            </div>
-
-            <div class="input__group">
-              <label for="confirm-pwd">Confirm Password</label>
-              <div class="password__wrapper">
-                <input
-                  type="password"
-                  id="confirm-pwd"
-                  name="confirm_pwd"
-                  placeholder="Confirm your password"
-                />
-                <button
-                  type="button"
-                  class="password-toggle-btn"
-                  id="toggle-confirm-pwd"
+                  class="password-toggle"
+                  data-toggle-for="password"
                 >
                   <i class="ri-eye-line"></i>
                 </button>
@@ -136,19 +126,7 @@ require_once 'includes/views/register_view.php';
           Please review our community guidelines and rules before joining Travel Buddy.
         </p>
 
-        <div
-          style="
-            max-height: 250px;
-            overflow-y: auto;
-            margin-bottom: 1.5rem;
-            padding-right: 0.75rem;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: #555;
-            text-align: justify;
-            word-break: break-word;
-          "
-        >
+        <div class="modal__terms">
           <p style="margin-bottom: 0.75rem">
             <strong>1. Authenticity and Identity</strong><br />To foster a safe environment, you must use the name you use in everyday life and provide accurate information about yourself. Creating fake accounts or misrepresenting your identity is strictly prohibited.
           </p>
@@ -170,73 +148,12 @@ require_once 'includes/views/register_view.php';
           type="button"
           id="accept-terms-btn"
           class="wizard__btn wizard__btn--proceed style-submit-btn"
-          style="width: 100%; text-align: center; justify-content: center"
         >
           Accept Terms
         </button>
       </div>
     </div>
 
-    <script>
-      const termsModal = document.getElementById("terms-modal");
-      const openTermsBtn = document.getElementById("open-terms-modal");
-      const closeTermsBtn = document.getElementById("close-terms-modal");
-      const acceptTermsBtn = document.getElementById("accept-terms-btn");
-      const termsCheckbox = document.getElementById("terms-checkbox");
-      const registerForm = document.getElementById("registration-form");
-
-      openTermsBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        termsModal.classList.add("active");
-        document.body.style.overflow = "hidden";
-      });
-
-      const closeTerms = () => {
-        termsModal.classList.remove("active");
-        document.body.style.overflow = "";
-      };
-
-      closeTermsBtn.addEventListener("click", closeTerms);
-
-      termsModal.addEventListener("click", (e) => {
-        if (e.target === termsModal) {
-          closeTerms();
-        }
-      });
-
-      acceptTermsBtn.addEventListener("click", () => {
-        termsCheckbox.checked = true;
-        closeTerms();
-      });
-
-      const setupPasswordToggle = (toggleBtnId, passwordInputId) => {
-        const toggleBtn = document.getElementById(toggleBtnId);
-        const passwordInput = document.getElementById(passwordInputId);
-
-        toggleBtn.addEventListener("click", () => {
-          const icon = toggleBtn.querySelector("i");
-          if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            icon.classList.remove("ri-eye-line");
-            icon.classList.add("ri-eye-off-line");
-          } else {
-            passwordInput.type = "password";
-            icon.classList.remove("ri-eye-off-line");
-            icon.classList.add("ri-eye-line");
-          }
-        });
-      };
-
-      setupPasswordToggle("toggle-password", "password");
-      setupPasswordToggle("toggle-confirm-pwd", "confirm-pwd");
-
-      termsCheckbox.addEventListener("invalid", function () {
-        this.setCustomValidity("Please check this box to agree to our Terms and Conditions.");
-      });
-
-      termsCheckbox.addEventListener("input", function () {
-        this.setCustomValidity("");
-      });
-    </script>
+    <?php unset($_SESSION["register_data"]); ?>
   </body>
 </html>

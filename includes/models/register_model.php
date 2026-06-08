@@ -22,8 +22,18 @@ function get_email(object $pdo, string $email) {
     return $result;
 }
 
-function set_user(object $pdo, string $pwd, string $username, string $email) {
-    $query = "INSERT INTO users (username, pwd, email) VALUES (:username, :pwd, :email);";
+function get_contact(object $pdo, string $contact) {
+    $query = "SELECT username FROM users WHERE contact = :contact;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":contact", $contact);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function set_user(object $pdo, string $pwd, string $username, string $email, string $contact, string $address) {
+    $query = "INSERT INTO users (username, pwd, email, contact, address) VALUES (:username, :pwd, :email, :contact, :address);";
     $stmt = $pdo->prepare($query);
 
     $options = [
@@ -35,5 +45,7 @@ function set_user(object $pdo, string $pwd, string $username, string $email) {
     $stmt->bindParam(":username", $username);
     $stmt->bindParam(":pwd", $hashedPwd);
     $stmt->bindParam(":email", $email);
+    $stmt->bindParam(":contact", $contact);
+    $stmt->bindParam(":address", $address);
     $stmt->execute();
 }

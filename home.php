@@ -1,10 +1,6 @@
 <?php
 require_once 'includes/config.php';
-
-if (!isset($_SESSION["user_id"])) {
-    header("Location: index.php");
-    die();
-}
+require_once 'includes/auth.php';
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +33,7 @@ if (!isset($_SESSION["user_id"])) {
         <li><a href="profile.php">Profile</a></li>
         <div class="nav__buttons">
           <li>
-            <a href="includes/logout.include.php"
+            <a href="includes/logout.php"
               ><button class="outlined__btn">
                 <i class="ri-logout-box-r-line"></i>Logout
               </button></a

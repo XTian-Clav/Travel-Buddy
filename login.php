@@ -1,5 +1,6 @@
 <?php
 require_once 'includes/config.php';
+require_once 'includes/guest.php';
 require_once 'includes/views/login_view.php';
 ?>
 
@@ -14,6 +15,8 @@ require_once 'includes/views/login_view.php';
     />
     <link rel="stylesheet" href="styles.css" />
     <title>Travel Buddy | Login</title>
+
+    <script src="js/password-toggle.js" defer></script>
   </head>
   <body>
     <nav>
@@ -47,7 +50,6 @@ require_once 'includes/views/login_view.php';
             Login to continue accessing your account.
           </p>
 
-          <div id="register-error-msg" class="form-error" style="none;"></div>
           <?php check_login_errors(); ?>
 
           <form action="includes/login.include.php" method="POST">
@@ -74,8 +76,8 @@ require_once 'includes/views/login_view.php';
                 />
                 <button
                   type="button"
-                  class="password-toggle-btn"
-                  id="toggle-password"
+                  class="password-toggle"
+                  data-toggle-for="password"
                 >
                   <i class="ri-eye-line"></i>
                 </button>
@@ -106,41 +108,5 @@ require_once 'includes/views/login_view.php';
         </div>
       </div>
     </section>
-    <script>
-      const setupPasswordToggle = (toggleBtnId, passwordInputId) => {
-        const toggleBtn = document.getElementById(toggleBtnId);
-        const passwordInput = document.getElementById(passwordInputId);
-
-        toggleBtn.addEventListener("click", () => {
-          const icon = toggleBtn.querySelector("i");
-          if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            icon.classList.remove("ri-eye-line");
-            icon.classList.add("ri-eye-off-line");
-          } else {
-            passwordInput.type = "password";
-            icon.classList.remove("ri-eye-off-line");
-            icon.classList.add("ri-eye-line");
-          }
-        });
-      };
-
-      setupPasswordToggle("toggle-password", "password");
-
-      const loginForm = document.querySelector("form");
-      const errorContainer = document.getElementById("login-error-msg");
-
-      loginForm.addEventListener("submit", (e) => {
-        const username = document.getElementById("username").value.trim();
-        errorContainer.style.display = "none";
-
-        if (username.length < 3) {
-          e.preventDefault();
-          errorContainer.textContent =
-            "Username must be at least 3 characters long.";
-          errorContainer.style.display = "block";
-        }
-      });
-    </script>
   </body>
 </html>

@@ -2,16 +2,8 @@
 
 declare(strict_types=1);
 
-function is_input_empty(string $username, string $pwd, string $email) {
-    if (empty($username) || empty($pwd) || empty($email)) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function is_email_invalid(string $email) {
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+function is_input_empty(string $username, string $pwd, string $email, string $contact, string $address) {
+    if (empty($username) || empty($pwd) || empty($email) || empty($contact) || empty($address)) {
         return true;
     } else {
         return false;
@@ -36,15 +28,8 @@ function is_username_taken(object $pdo, string $username) {
     }
 }
 
-function is_password_weak(string $pwd) {
-    if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/", $pwd)) {
-        return true;
-    }
-    return false;
-}
-
-function is_password_match(string $pwd, string $confirm_pwd) {
-    if ($pwd !== $confirm_pwd) {
+function is_email_invalid(string $email) {
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         return true;
     } else {
         return false;
@@ -59,6 +44,32 @@ function is_email_taken(object $pdo, string $email) {
     }
 }
 
-function create_user(object $pdo, string $pwd, string $username, string $email) {
-    set_user($pdo, $pwd, $username, $email);
+function is_contact_invalid(string $contact): bool 
+{
+    return !preg_match('/^09\d{9}$/', str_replace([' ', '-'], '', $contact));
+}
+
+function is_contact_taken(object $pdo, string $contact) {
+    if (get_contact($pdo, $contact)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function is_password_weak(string $pwd) {
+    if (strlen($pwd) < 8) {
+        return true;
+    }
+    if (!preg_match("/[A-Z]/", $pwd)) {
+        return true;
+    }
+    if (!preg_match("/\d/", $pwd)) {
+        return true;
+    }
+    return false;
+}
+
+function create_user(object $pdo, string $pwd, string $username, string $email, string $contact, string $address) {
+    set_user($pdo, $pwd, $username, $email, $contact, $address);
 }

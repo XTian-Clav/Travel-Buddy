@@ -382,7 +382,7 @@ nav {
   box-shadow: 0 0 0 4px rgba(15, 103, 110, 0.1);
 }
 
-.password-toggle-btn {
+.password-toggle {
   position: absolute;
   right: 14px;
   top: 50%;
@@ -398,8 +398,30 @@ nav {
   justify-content: center;
 }
 
-.password-toggle-btn:hover {
+.password-toggle:hover {
   color: var(--primary-color);
+}
+
+.password__requirements {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+  font-size: 0.85rem;
+}
+.password__requirements li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  color: #888;
+  transition: color 0.2s ease;
+}
+.password__requirements li i {
+  font-size: 1rem;
+}
+.password__requirements li.requirement--met {
+  color: #2e7d32;
+  font-weight: 500;
 }
 
 .login__options {
@@ -1882,6 +1904,18 @@ nav {
   font-size: 1rem;
   margin-top: 0.25rem;
   margin-bottom: 1.5rem;
+}
+
+.modal__terms {
+  max-height: 250px;
+  overflow-y: auto;
+  margin-bottom: 1.5rem;
+  padding-right: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-dark);
+  text-align: justify;
+  word-break: break-word;
 }
 
 .modal__mini-summary {

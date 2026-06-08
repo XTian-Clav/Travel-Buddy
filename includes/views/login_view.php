@@ -18,6 +18,22 @@ function output_email() {
     }
 }
 
+function output_contact() {
+    if (isset($_SESSION["user_id"])) {
+        echo $_SESSION["user_contact"];
+    } else {
+        echo "You are not logged in.";
+    }
+}
+
+function output_address() {
+    if (isset($_SESSION["user_id"])) {
+        echo $_SESSION["user_address"];
+    } else {
+        echo "You are not logged in.";
+    }
+}
+
 function check_login_errors() {
     if (isset($_SESSION["errors_login"])) {
         $errors = $_SESSION["errors_login"];

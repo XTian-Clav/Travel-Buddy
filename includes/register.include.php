@@ -3,8 +3,9 @@
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = $_POST["username"];
     $pwd = $_POST["pwd"];
-    $confirm_pwd = $_POST["confirm_pwd"] ?? "";
     $email = $_POST["email"];
+    $contact = $_POST["contact"];
+    $address = $_POST["address"];
 
     try {
         require_once 'db_handler.php';
@@ -15,11 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         //ERROR HANDLERS
         $errors = [];
 
-        if (is_input_empty($username, $pwd, $email)) {
+        if (is_input_empty($username, $pwd, $email, $contact, $address)) {
             $errors["empty_input"] = "Fill in all fields!";
-        }
-        if (is_email_invalid($email)) {
-            $errors["invalid_email"] = "Invalid email used!";
         }
         if (is_username_invalid($username)) {
             $errors["invalid_username"] = "Username must be alphanumeric and at least 3 characters long.";
@@ -27,14 +25,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (is_username_taken($pdo, $username)) {
             $errors["username_taken"] = "Username already taken!";
         }
-        if (is_password_weak($pwd)) {
-            $errors["weak_password"] = "Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, and a number.";
-        }
-        if (is_password_match($pwd, $confirm_pwd)) {
-            $errors["password_mismatch"] = "Passwords do not match!";
+        if (is_email_invalid($email)) {
+            $errors["invalid_email"] = "Invalid email used!";
         }
         if (is_email_taken($pdo, $email)) {
             $errors["email_taken"] = "Email already used!";
+        }
+        if (is_contact_invalid($contact)) {
+            $errors["invalid_contact"] = "Invalid contact number. Please use a valid 11-digit Philippine mobile number (e.g., 09171234567).";
+        }
+        if (is_contact_taken($pdo, $contact)) {
+            $errors["contact_taken"] = "Contact number already used!";
+        }
+        if (is_password_weak($pwd)) {
+            $errors["weak_password"] = "Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, and a number.";
         }
 
         require_once 'config.php';
@@ -45,6 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $registerData = [
                 "username" => $username,
                 "email" => $email,
+                "contact" => $contact,
+                "address" => $address,
             ];
             $_SESSION["register_data"] = $registerData;
 
@@ -52,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             die();
         }
 
-        create_user($pdo, $pwd, $username, $email);
+        create_user($pdo, $pwd, $username, $email, $contact, $address);
 
         header("Location: ../login.php?register=success");
 

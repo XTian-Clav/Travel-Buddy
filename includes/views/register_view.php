@@ -33,6 +33,36 @@ function register_inputs(string $type) {
             echo '<input type="email" id="email" name="email" placeholder="Enter your email">';
         }
     }
+
+    if ($type === 'contact') {
+        if (isset($_SESSION["register_data"]["contact"]) && !isset($_SESSION["errors_register"]["invalid_contact"])) {
+            echo '<label for="contact">Contact Number</label>';
+            echo '<input
+                type="text"
+                id="contact"
+                name="contact"
+                placeholder="e.g. 09171234567"
+                value="' . htmlspecialchars($_SESSION["register_data"]["contact"]) . '">';
+        } else {
+            echo '<label for="contact">Contact Number</label>';
+            echo '<input type="text" id="contact" name="contact" placeholder="e.g. 09171234567">';
+        }
+    }
+
+    if ($type === 'address') {
+        if (isset($_SESSION["register_data"]["address"])) {
+            echo '<label for="address">Address</label>';
+            echo '<input
+                type="text"
+                id="address"
+                name="address"
+                placeholder="Enter your full address"
+                value="' . htmlspecialchars($_SESSION["register_data"]["address"]) . '">';
+        } else {
+            echo '<label for="address">Address</label>';
+            echo '<input type="text" id="address" name="address" placeholder="Enter your full address">';
+        }
+    }
 }
 
 function check_register_errors() {
@@ -47,5 +77,7 @@ function check_register_errors() {
     }
     else if (isset($_GET["register"]) && $_GET["register"] === "success") {
         echo '<div class="form-success">Registration Successful!</div>';
+        
+        unset($_SESSION["register_data"]);
     }
 }
