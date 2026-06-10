@@ -227,7 +227,7 @@ require_once 'includes/auth.php';
         <h3>Confirm Your Selection</h3>
         <p class="modal__description">
           Review your selected itinerary details before saving to your
-          dashboard.
+          Profile.
         </p>
 
         <div class="modal__mini-summary">

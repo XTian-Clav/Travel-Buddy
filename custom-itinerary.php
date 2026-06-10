@@ -135,7 +135,7 @@ require_once 'includes/views/custom_view.php';
                         <option value="1" selected>1 Traveler</option>
                         <option value="2">2 Travelers</option>
                         <option value="3">3 Travelers</option>
-                        <option value="4+">4 Travelers</option>
+                        <option value="4">4 Travelers</option>
                       </select>
                     </div>
                   </div>
@@ -249,6 +249,9 @@ require_once 'includes/views/custom_view.php';
             <button type="button" class="modal__close success-close-btn" id="close-success-modal">
               <i class="ri-close-line"></i>
             </button>
+            <div class="success__logo-container">
+              <img src="assets/modal-logo.svg" alt="Travel Buddy Logo" />
+            </div>
             <h2>Itinerary Saved!</h2>
             <p>Your trip has been saved to your profile.</p>
             <div class="success__actions">

@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS travel_buddy;
+USE travel_buddy;
+
 CREATE TABLE users (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL,
