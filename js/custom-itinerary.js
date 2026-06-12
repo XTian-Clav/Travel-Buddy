@@ -3,13 +3,16 @@ const totalSteps = 3;
 
 document.addEventListener("DOMContentLoaded", () => {
   const startDateInput = document.getElementById("start_date");
+  const endDateInput = document.getElementById("end_date"); // <-- Add this
   const today = new Date();
   const year = today.getFullYear();
   const month = String(today.getMonth() + 1).padStart(2, "0");
   const day = String(today.getDate()).padStart(2, "0");
   const formattedToday = `${year}-${month}-${day}`;
+
   startDateInput.value = formattedToday;
   startDateInput.min = formattedToday;
+  endDateInput.min = formattedToday;
 });
 
 const activitiesData = [
