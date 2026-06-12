@@ -90,10 +90,19 @@ require_once 'includes/views/profile_view.php';
         <div class="profile__content">
           <div class="profile__title">
             <h2>Saved Trips</h2>
-            <button class="outlined__btn">
-              <i class="ri-add-line"></i>
-              New Trip
-            </button>
+            <div class="dropdown">
+              <button class="outlined__btn">
+                <i class="ri-add-line"></i>
+                New Trip
+              </button>
+              <div class="dropdown-content">
+                <div class="dropdown-menu">
+                  <a href="coron.php">Coron</a>
+                  <a href="elnido.php">El Nido</a>
+                  <a href="custom-itinerary.php">Custom</a>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="trip__grid">
             <?php if (has_no_trips($trips)): ?>
