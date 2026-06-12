@@ -7,9 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
 require_once 'config.php';
 require_once 'db_handler.php';
-require_once 'models/coron_model.php';
-require_once 'views/coron_view.php';
-require_once 'controller/coron_controller.php';
+require_once 'models/predefined_model.php';
+require_once 'views/predefined_view.php';
+require_once 'controller/predefined_controller.php';
 
 try {
 
@@ -21,7 +21,7 @@ try {
 
     $errors = [];
 
-    if (is_coron_input_empty($package_key, $start_date, $end_date)) {
+    if (is_predefined_input_empty($package_key, $start_date, $end_date)) {
         $errors["empty_input"] = "Please complete all fields.";
     }
 
@@ -34,15 +34,15 @@ try {
     }
 
     if ($errors) {
-        $_SESSION["errors_coron"] = $errors;
-        header("Location: ../coron.php");
+        $_SESSION["errors_predefined"] = $errors;
+        header("Location: ../home.php");
         die();
     }
 
     $totalDays = calculate_total_days($start_date, $end_date);
-    $packageData = get_coron_package_data($package_key);
+    $packageData = get_predefined_package_data($package_key);
 
-    create_coron_trip(
+    create_predefined_trip(
         $pdo,
         (int)$_SESSION["user_id"],
         $packageData,

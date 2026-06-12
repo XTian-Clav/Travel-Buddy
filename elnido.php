@@ -1,6 +1,7 @@
 <?php
 require_once 'includes/config.php';
 require_once 'includes/auth.php';
+require_once 'includes/views/predefined_view.php';
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +14,7 @@ require_once 'includes/auth.php';
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <title>Travel Buddy | El Nido</title>
+    <title>Travel Buddy | Elnido</title>
   </head>
   <body class="bg-home">
     <nav>
@@ -44,10 +45,10 @@ require_once 'includes/auth.php';
       <header class="palawan__hero bg-elnido">
         <div class="palawan__overlay">
           <div class="palawan__content">
-            <h1>Discover El Nido</h1>
+            <h1>Explore El Nido</h1>
             <p>
-              Curated island experiences, relaxing beaches, and unforgettable
-              adventures in paradise.
+                Curated island experiences, relaxing beaches, and unforgettable
+                adventures in paradise.
             </p>
           </div>
         </div>
@@ -64,8 +65,9 @@ require_once 'includes/auth.php';
         </h2>
 
         <div class="itinerary__grid">
+          <!-- Itinerary A -->
           <div class="itinerary__card">
-            <img src="assets/elnido-itinerary-a.webp" alt="Itinerary A" />
+            <img src="assets/itinerary-a-elnido.webp" alt="Itinerary A" />
             <div class="itinerary__content">
               <h4>Itinerary A</h4>
               <p class="itinerary__description">Relaxing & Explore</p>
@@ -102,7 +104,7 @@ require_once 'includes/auth.php';
                   data-package="elnido_package_a"
                   data-title="Itinerary A"
                   data-desc="Relaxing & Explore"
-                  data-price="₱1,800 – ₱2,500"
+                  data-price="₱2,500 - ₱4,000"
                 >
                   Choose Itinerary
                 </button>
@@ -110,8 +112,9 @@ require_once 'includes/auth.php';
             </div>
           </div>
 
+          <!-- Itinerary B -->
           <div class="itinerary__card">
-            <img src="assets/elnido-itinerary-b.webp" alt="Itinerary B" />
+            <img src="assets/itinerary-b-elnido.webp" alt="Itinerary B" />
             <div class="itinerary__content">
               <h4>Itinerary B</h4>
               <p class="itinerary__description">Island Hopping Adventure</p>
@@ -148,7 +151,7 @@ require_once 'includes/auth.php';
                   data-package="elnido_package_b"
                   data-title="Itinerary B"
                   data-desc="Island Hopping Adventure"
-                  data-price="₱2,100 – ₱2,600"
+                  data-price="₱5,500 - ₱7,500"
                 >
                   Choose Itinerary
                 </button>
@@ -156,8 +159,9 @@ require_once 'includes/auth.php';
             </div>
           </div>
 
+          <!-- Itinerary C -->
           <div class="itinerary__card">
-            <img src="assets/elnido-itinerary-c.webp" alt="Itinerary C" />
+            <img src="assets/itinerary-c-elnido.webp" alt="Itinerary C" />
             <div class="itinerary__content">
               <h4>Itinerary C</h4>
               <p class="itinerary__description">Premium Leisure Experience</p>
@@ -194,7 +198,7 @@ require_once 'includes/auth.php';
                   data-package="elnido_package_c"
                   data-title="Itinerary C"
                   data-desc="Premium Leisure Experience"
-                  data-price="₱7,500 – ₱12,000"
+                  data-price="₱10,500 - ₱16,000"
                 >
                   Choose Itinerary
                 </button>
@@ -205,65 +209,111 @@ require_once 'includes/auth.php';
       </div>
     </section>
 
-    <div class="modal__overlay" id="save-modal">
+    <div class="modal__overlay" id="input-modal">
+      <div class="modal__card">
+        <div class="modal__header">
+          <h3>Enter Trip Details</h3>
+          <button type="button" class="modal__close" id="close-input-modal">
+            <i class="ri-close-line"></i>
+          </button>
+        </div>
+        <p class="modal__description">Fill in your travel details to continue.</p>
+        <div class="modal__section">
+          <div class="input__group">
+            <label for="start_date">Start Date</label>
+            <div class="date__wrapper">
+              <input type="date" id="start_date" name="start_date" required />
+            </div>
+          </div>
+          <div class="input__group">
+            <label for="end_date">End Date</label>
+            <div class="date__wrapper">
+              <input type="date" id="end_date" name="end_date" required />
+            </div>
+          </div>
+          <div class="input__group">
+            <label for="travelers">Travelers</label>
+            <div class="select__wrapper">
+              <select id="travelers" name="travelers" required>
+                <option value="1" selected>1 Traveler</option>
+                <option value="2">2 Travelers</option>
+                <option value="3">3 Travelers</option>
+                <option value="4">4 Travelers</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="wizard__form">
+          <button type="button" class="wizard__btn wizard__btn--proceed" id="to-preview-btn">
+            Next <i class="ri-arrow-right-line"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal__overlay" id="preview-modal">
       <form
         id="confirm-itinerary-form"
-        action="process-choice.php"
+        action="includes/predefined.include.php"
         method="POST"
         class="modal__card"
       >
-        <button type="button" class="modal__close" id="close-save-modal">
-          <i class="ri-close-line"></i>
-        </button>
+        <input type="hidden" name="destination" value="Elnido" />
+        <input type="hidden" name="package_key" id="hidden-package-input" />
+        <input type="hidden" name="start_date" id="hidden-start-date" />
+        <input type="hidden" name="end_date" id="hidden-end-date" />
+        <input type="hidden" name="travelers" id="hidden-travelers" />
 
-        <input type="hidden" name="destination" value="El Nido" />
-        <input
-          type="hidden"
-          name="itinerary_choice"
-          id="hidden-package-input"
-          value=""
-        />
-
-        <h3>Confirm Your Selection</h3>
+        <h3>Trip Details<Summary></Summary></h3>
+        <div class="modal__header">
+          <button type="button" class="modal__close" id="close-preview-modal" style="margin-left: auto;">
+            <i class="ri-close-line"></i>
+          </button>
+        </div>
         <p class="modal__description">
-          Review your selected itinerary details before saving to your
-          Profile.
+          Review itinerary details before saving to your Profile.
         </p>
-
-        <div class="modal__mini-summary">
-          <div style="width: 100%; text-align: left">
-            <strong>Itinerary Package:</strong>
-            <span id="modal-summary-title">Itinerary</span>
+        
+        <div class="modal__section">
+          <div class="modal__mini-summary">
+            <div style="width: 100%; text-align: left">
+              <strong>Destination:</strong> <span>El Nido, Palawan</span>
+            </div>
           </div>
-        </div>
 
-        <div class="modal__mini-summary">
-          <div style="width: 100%; text-align: left">
-            <strong>Title:</strong>
-            <span id="modal-summary-desc"></span>
+          <div class="modal__mini-summary">
+            <div style="width: 100%; text-align: left">
+              <strong>Package:</strong> <span id="modal-summary-title">—</span>
+            </div>
           </div>
-        </div>
 
-        <div class="modal__mini-summary">
-          <div style="width: 100%; text-align: left">
-            <strong>Destination:</strong>
-            <span>El Nido, Palawan</span>
+          <div class="modal__mini-summary">
+            <div style="width: 100%; text-align: left">
+              <strong>Description:</strong> <span id="modal-summary-desc">—</span>
+            </div>
           </div>
-        </div>
 
-        <div class="modal__mini-summary">
-          <div style="width: 100%; text-align: left">
-            <strong>Estimated Cost:</strong>
-            <span id="modal-summary-price">₱0</span>
+          <div class="modal__mini-summary">
+            <div style="width: 100%; text-align: left">
+              <strong>Estimated Cost:</strong> <span id="modal-summary-price">—</span>
+            </div>
+          </div>
+
+          <div class="modal__mini-summary">
+            <div style="width: 100%; text-align: left">
+              <strong>Travelers:</strong> <span id="modal-travelers-preview">1</span>
+            </div>
+          </div>
+
+          <div class="modal__mini-summary">
+            <div style="width: 100%; text-align: left">
+            <strong>Travel Dates:</strong> <span id="modal-dates-preview">—</span>
+            </div>
           </div>
         </div>
 
         <div class="wizard__form">
-          <button
-            type="submit"
-            class="style-submit-btn wizard__btn wizard__btn--proceed"
-            id="confirm-submit-btn"
-          >
+          <button type="submit" class="wizard__btn wizard__btn--proceed style-submit-btn">
             Save Itinerary <i class="ri-save-line"></i>
           </button>
         </div>
@@ -272,12 +322,7 @@ require_once 'includes/auth.php';
 
     <div class="modal__overlay" id="success-modal">
       <div class="modal__card success__card">
-        <button
-          type="button"
-          class="modal__close"
-          id="close-success-modal"
-          style="color: rgba(255, 255, 255, 0.7)"
-        >
+        <button type="button" class="modal__close" id="close-success-modal">
           <i class="ri-close-line"></i>
         </button>
         <div class="success__logo-container">
@@ -292,102 +337,6 @@ require_once 'includes/auth.php';
       </div>
     </div>
 
-    <script>
-      const saveModal = document.getElementById("save-modal");
-      const successModal = document.getElementById("success-modal");
-      const closeSaveModal = document.getElementById("close-save-modal");
-      const closeSuccessModal = document.getElementById("close-success-modal");
-      const confirmForm = document.getElementById("confirm-itinerary-form");
-      const hiddenInput = document.getElementById("hidden-package-input");
-
-      const modalTitle = document.getElementById("modal-summary-title");
-      const modalDesc = document.getElementById("modal-summary-desc");
-      const modalPrice = document.getElementById("modal-summary-price");
-
-      document.querySelectorAll(".choose-itinerary-btn").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const packageKey = btn.getAttribute("data-package");
-          const title = btn.getAttribute("data-title");
-          const desc = btn.getAttribute("data-desc");
-          const price = btn.getAttribute("data-price");
-
-          if (hiddenInput) hiddenInput.value = packageKey;
-          if (modalTitle) modalTitle.textContent = title;
-          if (modalDesc) modalDesc.textContent = desc;
-          if (modalPrice) modalPrice.textContent = price;
-
-          if (saveModal) {
-            saveModal.classList.add("active");
-            document.body.style.overflow = "hidden";
-          }
-        });
-      });
-
-      const hideSaveModal = () => {
-        if (saveModal) {
-          saveModal.classList.remove("active");
-          document.body.style.overflow = "";
-        }
-      };
-
-      if (closeSaveModal) {
-        closeSaveModal.addEventListener("click", hideSaveModal);
-      }
-
-      if (closeSuccessModal && successModal) {
-        closeSuccessModal.addEventListener("click", () => {
-          successModal.classList.remove("active");
-          document.body.style.overflow = "";
-        });
-      }
-
-      if (confirmForm) {
-        confirmForm.addEventListener("submit", async (e) => {
-          e.preventDefault();
-
-          const submitBtn = document.getElementById("confirm-submit-btn");
-          let originalBtnText = "";
-
-          if (submitBtn) {
-            originalBtnText = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML =
-              'Saving... <i class="ri-loader-4-line ri-spin"></i>';
-          }
-
-          const formData = new FormData(confirmForm);
-
-          try {
-            const response = await fetch(confirmForm.action, {
-              method: confirmForm.method,
-              body: formData,
-              headers: {
-                "X-Requested-With": "XMLHttpRequest",
-              },
-            });
-
-            if (response.ok) {
-              hideSaveModal();
-              if (successModal) {
-                successModal.classList.add("active");
-                document.body.style.overflow = "hidden";
-              }
-            } else {
-              alert(
-                "Something went wrong saving your itinerary. Please try again."
-              );
-            }
-          } catch (error) {
-            console.error("Submission error:", error);
-            alert("Network error. Could not connect to the server.");
-          } finally {
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = originalBtnText;
-            }
-          }
-        });
-      }
-    </script>
+    <script src="js/predefined.js" defer></script>
   </body>
 </html>

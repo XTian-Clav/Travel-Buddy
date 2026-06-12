@@ -2,47 +2,43 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputModal = document.getElementById("input-modal");
   const previewModal = document.getElementById("preview-modal");
   const successModal = document.getElementById("success-modal");
-
-  const toPreviewBtn = document.getElementById("to-preview-btn");
-
-  const closeInputModal = document.getElementById("close-input-modal");
-  const closePreviewModal = document.getElementById("close-preview-modal");
-  const closeSuccessModal = document.getElementById("close-success-modal");
-
   const confirmForm = document.getElementById("confirm-itinerary-form");
 
-  const startDateInput = document.getElementById("start_date");
-  const endDateInput = document.getElementById("end_date");
-  const travelersInput = document.getElementById("travelers");
-
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const day = String(today.getDate()).padStart(2, "0");
-  const formattedToday = `${year}-${month}-${day}`;
-
-  startDateInput.value = formattedToday;
-  startDateInput.min = formattedToday;
-  endDateInput.min = formattedToday;
-
-  const modalTravelersPreview = document.getElementById(
-    "modal-travelers-preview"
-  );
-  const modalDatesPreview = document.getElementById("modal-dates-preview");
-
-  const modalTitle = document.getElementById("modal-summary-title");
-  const modalPrice = document.getElementById("modal-summary-price");
-  const modalDesc = document.getElementById("modal-summary-desc");
-  const hiddenInput = document.getElementById("hidden-package-input");
-  const hiddenStartDate = document.getElementById("hidden-start-date");
-  const hiddenEndDate = document.getElementById("hidden-end-date");
-  const hiddenTravelers = document.getElementById("hidden-travelers");
-
+  // Guard Clause: Break early if critical layout structures are missing
   if (!inputModal || !previewModal || !confirmForm) {
     console.error("Missing modal elements");
     return;
   }
 
+  const toPreviewBtn = document.getElementById("to-preview-btn");
+  const closeInputModal = document.getElementById("close-input-modal");
+  const closePreviewModal = document.getElementById("close-preview-modal");
+  const closeSuccessModal = document.getElementById("close-success-modal");
+
+  const startDateInput = document.getElementById("start_date");
+  const endDateInput = document.getElementById("end_date");
+  const travelersInput = document.getElementById("travelers");
+
+  const modalTravelersPreview = document.getElementById(
+    "modal-travelers-preview"
+  );
+  const modalDatesPreview = document.getElementById("modal-dates-preview");
+  const modalTitle = document.getElementById("modal-summary-title");
+  const modalPrice = document.getElementById("modal-summary-price");
+  const modalDesc = document.getElementById("modal-summary-desc");
+
+  const hiddenInput = document.getElementById("hidden-package-input");
+  const hiddenStartDate = document.getElementById("hidden-start-date");
+  const hiddenEndDate = document.getElementById("hidden-end-date");
+  const hiddenTravelers = document.getElementById("hidden-travelers");
+
+  // Set default dates cleanly
+  const formattedToday = new Date().toISOString().split("T")[0];
+  startDateInput.value = formattedToday;
+  startDateInput.min = formattedToday;
+  endDateInput.min = formattedToday;
+
+  // Simple Philippine Date Formatter
   const fmt = (d) =>
     new Date(d + "T00:00:00").toLocaleDateString("en-PH", {
       month: "short",
@@ -50,7 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
       year: "numeric",
     });
 
+  // Proceed to Preview Event
   toPreviewBtn?.addEventListener("click", () => {
+    // Guard Clauses for field validation
     if (!startDateInput.value || !endDateInput.value) {
       alert("Please complete your travel dates.");
       return;
@@ -61,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // Sync values to hidden elements and text previews
     hiddenStartDate.value = startDateInput.value;
     hiddenEndDate.value = endDateInput.value;
     hiddenTravelers.value = travelersInput.value || "1";
@@ -74,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     previewModal.classList.add("active");
   });
 
+  // Unified Modal Closing Listeners
   closeInputModal?.addEventListener("click", () =>
     inputModal.classList.remove("active")
   );
@@ -84,15 +84,16 @@ document.addEventListener("DOMContentLoaded", () => {
     successModal.classList.remove("active")
   );
 
+  // Select Itinerary Card Event
   document.querySelectorAll(".choose-itinerary-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       hiddenInput.value = btn.dataset.package;
-
       modalTitle.textContent = btn.dataset.title;
       modalDesc.textContent = btn.dataset.desc;
       modalPrice.textContent = btn.dataset.price;
 
-      startDateInput.value = "";
+      // Clean default resets
+      startDateInput.value = formattedToday;
       endDateInput.value = "";
       travelersInput.value = "1";
 
@@ -100,14 +101,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Async Form Submission handling
   confirmForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const btn = confirmForm.querySelector("button[type='submit']");
-    const old = btn.innerHTML;
+    const submitBtn = confirmForm.querySelector("button[type='submit']");
+    const originalText = submitBtn.innerHTML;
 
-    btn.disabled = true;
-    btn.innerHTML = "Saving...";
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = "Saving...";
 
     try {
       const response = await fetch(confirmForm.action, {
@@ -115,9 +117,8 @@ document.addEventListener("DOMContentLoaded", () => {
         body: new FormData(confirmForm),
       });
 
-      if (!response.ok) {
-        throw new Error("Server returned an error status");
-      }
+      // Guard Clause: Handle bad HTTP responses gracefully
+      if (!response.ok) throw new Error("Server returned an error status");
 
       previewModal.classList.remove("active");
       successModal.classList.add("active");
@@ -125,8 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error(err);
       alert("Network error or server down. Please try again.");
     } finally {
-      btn.disabled = false;
-      btn.innerHTML = old;
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
     }
   });
 });

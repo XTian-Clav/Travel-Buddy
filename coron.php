@@ -1,7 +1,7 @@
 <?php
 require_once 'includes/config.php';
 require_once 'includes/auth.php';
-require_once 'includes/views/coron_view.php';
+require_once 'includes/views/predefined_view.php';
 ?>
 
 <!DOCTYPE html>
@@ -94,6 +94,10 @@ require_once 'includes/views/coron_view.php';
                   <h5 class="price__label">Estimated Cost</h5>
                   <h3>₱2,500 - ₱4,000</h3>
                 </div>
+                <p class="price__note">
+                  <i class="ri-information-line"></i> Prices may change
+                  depending on the season and availability.
+                </p>
                 <button
                   type="button"
                   class="btn choose-itinerary-btn"
@@ -137,6 +141,10 @@ require_once 'includes/views/coron_view.php';
                   <h5 class="price__label">Estimated Cost</h5>
                   <h3>₱5,500 - ₱7,500</h3>
                 </div>
+                <p class="price__note">
+                  <i class="ri-information-line"></i> Prices may change
+                  depending on the season and availability.
+                </p>
                 <button
                   type="button"
                   class="btn choose-itinerary-btn"
@@ -180,6 +188,10 @@ require_once 'includes/views/coron_view.php';
                   <h5 class="price__label">Estimated Cost</h5>
                   <h3>₱10,500 - ₱16,000</h3>
                 </div>
+                <p class="price__note">
+                  <i class="ri-information-line"></i> Prices may change
+                  depending on the season and availability.
+                </p>
                 <button
                   type="button"
                   class="btn choose-itinerary-btn"
@@ -242,7 +254,7 @@ require_once 'includes/views/coron_view.php';
     <div class="modal__overlay" id="preview-modal">
       <form
         id="confirm-itinerary-form"
-        action="includes/coron.include.php"
+        action="includes/predefined.include.php"
         method="POST"
         class="modal__card"
       >
@@ -253,11 +265,22 @@ require_once 'includes/views/coron_view.php';
         <input type="hidden" name="travelers" id="hidden-travelers" />
 
         <h3>Trip Details<Summary></Summary></h3>
+        <div class="modal__header">
+          <button type="button" class="modal__close" id="close-preview-modal" style="margin-left: auto;">
+            <i class="ri-close-line"></i>
+          </button>
+        </div>
         <p class="modal__description">
           Review itinerary details before saving to your Profile.
         </p>
         
         <div class="modal__section">
+          <div class="modal__mini-summary">
+            <div style="width: 100%; text-align: left">
+              <strong>Destination:</strong> <span>Coron, Palawan</span>
+            </div>
+          </div>
+
           <div class="modal__mini-summary">
             <div style="width: 100%; text-align: left">
               <strong>Package:</strong> <span id="modal-summary-title">—</span>
@@ -269,13 +292,7 @@ require_once 'includes/views/coron_view.php';
               <strong>Description:</strong> <span id="modal-summary-desc">—</span>
             </div>
           </div>
-
-          <div class="modal__mini-summary">
-            <div style="width: 100%; text-align: left">
-              <strong>Destination:</strong> <span>Coron, Palawan</span>
-            </div>
-          </div>
-
+          
           <div class="modal__mini-summary">
             <div style="width: 100%; text-align: left">
               <strong>Estimated Cost:</strong> <span id="modal-summary-price">—</span>
@@ -320,6 +337,6 @@ require_once 'includes/views/coron_view.php';
       </div>
     </div>
 
-    <script src="js/coron.js" defer></script>
+    <script src="js/predefined.js" defer></script>
   </body>
 </html>

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function is_coron_input_empty(string $package_key, string $start_date, string $end_date): bool {
+function is_predefined_input_empty(string $package_key, string $start_date, string $end_date): bool {
     return empty($package_key) || empty($start_date) || empty($end_date);
 }
 
