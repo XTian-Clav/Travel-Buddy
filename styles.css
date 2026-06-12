@@ -316,6 +316,7 @@ nav {
   padding: 2.5rem;
   border-radius: var(--border-radius-medium);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+  position: relative;
 }
 
 .login__card h2 {
@@ -533,10 +534,10 @@ nav {
   position: absolute;
   top: 100%;
   left: 0;
-  padding-top: 10px; /* This is your gap */
+  padding-top: 10px;
   min-width: 160px;
   z-index: 1;
-  background-color: transparent; /* Keeps the gap invisible */
+  background-color: transparent;
 }
 
 .dropdown-menu {
@@ -1970,6 +1971,25 @@ nav {
   color: var(--text-dark);
 }
 
+.modal__close--banner {
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  top: 1rem !important;
+  right: 1rem !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.modal__close--banner:hover {
+  background-color: rgba(255, 255, 255, 1);
+  transform: scale(1.05);
+}
+
 .modal__card h3 {
   font-family: var(--header-font);
   letter-spacing: var(--header-spacing);
@@ -2008,6 +2028,178 @@ nav {
   font-size: 0.95rem;
   color: var(--text-dark);
   border: 1px solid #e5e7eb;
+}
+
+.modal__card.trip-details-card {
+  max-width: 800px !important;
+  max-height: 85vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 90% !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.td-modal__banner {
+  width: 100%;
+  height: 220px;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.td-modal__overlay-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 15%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+.td-modal__banner-info {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  color: #ffffff;
+}
+
+.td-modal__badge {
+  background: #3182ce;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+
+.td-modal__title {
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+  text-align: left;
+  color: #ffffff !important;
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.td-modal__meta {
+  margin: 0;
+  text-align: left;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  color: #e2e8f0;
+}
+
+.td-modal__body {
+  padding: 1.5rem;
+}
+
+.td-modal__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  background: #f7fafc;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.25rem;
+  border: 1px solid #e2e8f0;
+}
+
+.td-modal__label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #718096;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.td-modal__value {
+  font-size: 0.95rem;
+  color: #2d3748;
+  font-weight: 500;
+}
+
+.td-modal__budget-row {
+  grid-column: span 2;
+  border-top: 1px solid #e2e8f0;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.td-modal__budget-label {
+  font-size: 0.9rem;
+  color: #2d3748;
+  font-weight: 700;
+}
+
+.td-modal__budget-price {
+  font-size: 1.2rem;
+  color: #2b6cb0;
+  font-weight: 800;
+}
+
+.td-modal__heading {
+  font-size: 1.05rem;
+  color: #2d3748;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.td-modal__subheading {
+  font-size: 0.85rem;
+  color: #718096;
+  margin-bottom: 0.5rem;
+}
+
+.td-modal__scroll-container {
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.td-modal__no-activities {
+  color: #718096;
+  font-style: italic;
+  padding: 0.5rem 0;
+}
+
+.td-modal__day-title {
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #1a202c;
+  font-weight: 700;
+  font-size: 1rem;
+  border-bottom: 1px solid #edf2f7;
+  padding-bottom: 0.25rem;
+}
+
+.td-modal__activity-item {
+  margin-bottom: 0.4rem;
+  padding-left: 0.75rem;
+  font-size: 0.95rem;
+  color: #4a5568;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.td-modal__activity-dot {
+  color: #3182ce;
+}
+
+.trip-details-card .modal__terms {
+  max-height: none !important;
+  overflow-y: visible !important;
 }
 
 .style-submit-btn {

@@ -47,6 +47,18 @@ function get_trip_by_id(PDO $pdo, int $trip_id, int $user_id): array|false {
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+function get_trip_activities(PDO $pdo, int $trip_id): array {
+    $query = "
+        SELECT * FROM trip_activities 
+        WHERE trip_id = :trip_id 
+        ORDER BY day_number ASC, id ASC
+    ";
+    
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([":trip_id" => $trip_id]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 function delete_trip(PDO $pdo, int $trip_id, int $user_id): void {
     $query = "
         DELETE FROM saved_trips

@@ -11,6 +11,29 @@ function output_trip_image(string $destination): string {
     return "assets/" . ($map[$destination] ?? "big-lagoon.webp");
 }
 
+function output_trip_details_json(array $trip, array $activities): void {
+  echo json_encode([
+      'success' => true,
+      'trip' => [
+          'itinerary_name'   => $trip['itinerary_name'],
+          'destination'      => $trip['destination'],
+          'total_days'       => $trip['total_days'],
+          'total_activities' => $trip['total_activities'],
+          'estimated_budget' => $trip['estimated_budget'],
+          'start_date'       => $trip['start_date'] ? date("M d, Y", strtotime($trip['start_date'])) : 'Flexible',
+          'end_date'         => $trip['end_date'] ? date("M d, Y", strtotime($trip['end_date'])) : 'Flexible',
+          'travelers'        => $trip['travelers'] ?? 1,
+          'trip_type'        => ucfirst($trip['trip_type']),
+          'image'            => output_trip_image($trip['destination'])
+      ],
+      'activities' => array_map(function($act) {
+          return [
+              'day_number'    => $act['day_number'],
+              'activity_name' => $act['activity_name']
+          ];
+      }, $activities)
+  ]);
+}
 function check_profile_errors(): void {
     if (isset($_SESSION["errors_profile"])) {
         $errors = $_SESSION["errors_profile"];

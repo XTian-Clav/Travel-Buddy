@@ -7,6 +7,27 @@ require_once 'views/profile_view.php';
 require_once 'controller/profile_controller.php';
 
 $userId = (int)($_SESSION["user_id"] ?? 0);
+
+if (isset($_GET["action"]) && $_GET["action"] === "get_details") {
+    header('Content-Type: application/json');
+    $tripId = (int)($_GET["trip_id"] ?? 0);
+
+    if ($userId <= 0 || $tripId <= 0) {
+        echo json_encode(['success' => false, 'message' => 'Invalid structural request parameters.']);
+        die();
+    }
+
+    $trip = get_trip_by_id($pdo, $tripId, $userId);
+    if (!$trip) {
+        echo json_encode(['success' => false, 'message' => 'Resource records not found or access denied.']);
+        die();
+    }
+
+    $activities = get_trip_activities($pdo, $tripId);
+    output_trip_details_json($trip, $activities);
+    die();
+}
+
 $trips = get_user_trips($pdo, $userId);
 
 if (isset($_GET["action"]) && $_GET["action"] === "delete") {

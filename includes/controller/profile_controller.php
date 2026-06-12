@@ -14,6 +14,20 @@ function is_trip_owner(array|false $trip): bool {
     return !empty($trip);
 }
 
+function handle_get_trip_details(PDO $pdo, int $trip_id, int $user_id): void {
+    $trip = get_trip_by_id($pdo, $trip_id, $user_id);
+
+    if (!is_trip_owner($trip)) {
+        echo json_encode(['success' => false, 'message' => 'You do not have permission to view this resource.']);
+        die();
+    }
+
+    $activities = get_trip_activities($pdo, $trip_id);
+    
+    output_trip_details_json($trip, $activities);
+    die();
+}
+
 function handle_delete_trip(PDO $pdo, int $trip_id, int $user_id): void {
     $trip = get_trip_by_id($pdo, $trip_id, $user_id);
 

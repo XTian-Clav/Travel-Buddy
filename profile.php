@@ -115,12 +115,12 @@ require_once 'includes/views/profile_view.php';
                     <div>
                       <h3><?php echo htmlspecialchars($trip['itinerary_name']); ?></h3>
                       <p>
-                        <?php echo $trip['total_days']; ?> Day/s •
+                        <?php echo $trip['total_days'] . ' ' . ($trip['total_days'] == 1 ? 'Day' : 'Days'); ?> •
                         <?php echo $trip['total_activities']; ?> Activities
                       </p>
                     </div>
                     <div class="trip__actions">
-                      <button class="btn">View Details</button>
+                      <button class="btn view-trip-btn" data-id="<?php echo $trip['id']; ?>">View Details</button>
                       <a href="profile.php?action=delete&trip_id=<?php echo $trip['id']; ?>"
                         onclick="return confirm('Are you sure you want to delete this trip?')">
                         <button class="outlined__btn">Delete</button>
@@ -136,12 +136,12 @@ require_once 'includes/views/profile_view.php';
     </section>
 
     <div class="modal__overlay" id="profile-modal">
-      <div class="login__container" style="padding: 0; max-width: 500px; width: 100%;">
-        <div class="login__card" style="position: relative; width: 100%;">
+      <div class="login__container">
+        <div class="login__card">
           
-          <button type="button" class="modal__close" id="close-profile-modal" style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; font-size: 1.5rem; cursor: pointer; color: inherit;">
-            <i class="ri-close-line"></i>
-          </button>
+        <button type="button" class="modal__close" id="close-profile-modal">
+          <i class="ri-close-line"></i>
+        </button>
 
           <h2>Edit Profile</h2>
           <p class="login__description">
@@ -149,8 +149,8 @@ require_once 'includes/views/profile_view.php';
           </p>
 
           <form action="profile.php" method="POST">
-            <div class="input__group" style="margin-bottom: 15px; text-align: left;">
-              <label for="username" style="display: block; margin-bottom: 5px; font-weight: 600;">Username</label>
+            <div class="input__group">
+              <label for="username">Username</label>
               <input
                 type="text"
                 id="username"
@@ -160,8 +160,8 @@ require_once 'includes/views/profile_view.php';
               />
             </div>
             
-            <div class="input__group" style="margin-bottom: 15px; text-align: left;">
-              <label for="email" style="display: block; margin-bottom: 5px; font-weight: 600;">Email</label>
+            <div class="input__group">
+              <label for="email">Email</label>
               <input
                 type="email"
                 id="email"
@@ -171,8 +171,8 @@ require_once 'includes/views/profile_view.php';
               />
             </div>
 
-            <div class="input__group" style="margin-bottom: 15px; text-align: left;">
-              <label for="contact" style="display: block; margin-bottom: 5px; font-weight: 600;">Contact Number</label>
+            <div class="input__group">
+              <label for="contact">Contact Number</label>
               <input
                 type="text"
                 id="contact"
@@ -182,8 +182,8 @@ require_once 'includes/views/profile_view.php';
               />
             </div>
 
-            <div class="input__group" style="margin-bottom: 20px; text-align: left;">
-              <label for="address" style="display: block; margin-bottom: 5px; font-weight: 600;">Address</label>
+            <div class="input__group">
+              <label for="address">Address</label>
               <input
                 type="text"
                 id="address"
@@ -193,12 +193,23 @@ require_once 'includes/views/profile_view.php';
               />
             </div>
 
-            <button type="submit" class="btn login__btn" style="width: 100%;">Save Changes</button>
+            <button type="submit" class="btn login__btn">Save Changes</button>
           </form>
         </div>
       </div>
     </div>
 
+    <div class="modal__overlay" id="trip-details-modal">
+      <div class="modal__card trip-details-card" style="padding: 0; overflow: hidden;">
+        <button type="button" class="modal__close modal__close--banner" id="close-trip-modal">
+          <i class="ri-close-line"></i>
+        </button>
+        <div id="modal-trip-content">
+          </div>
+      </div>
+    </div>
+
+    <script src="js/trip-details.js" defer></script>
     <script src="js/profile.js" defer></script>
     <script src="js/toast.js" defer></script>
   </body>
