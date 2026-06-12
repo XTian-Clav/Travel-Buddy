@@ -3,6 +3,7 @@ require_once 'includes/config.php';
 require_once 'includes/auth.php';
 require_once 'includes/profile.include.php';
 require_once 'includes/views/login_view.php';
+require_once 'includes/views/profile_view.php';
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +20,8 @@ require_once 'includes/views/login_view.php';
   </head>
 
   <body>
+    <?php check_profile_errors(); ?>
+
     <nav>
       <div class="nav__header">
         <div class="nav__logo">
@@ -78,7 +81,7 @@ require_once 'includes/views/login_view.php';
                 <p><?php output_address(); ?></p>
               </div>
             </div>
-            <button class="btn profile__btn">
+            <button class="btn profile__btn" id="open-profile-modal">
               <i class="ri-edit-line"></i>
               Edit Profile
             </button>
@@ -93,7 +96,6 @@ require_once 'includes/views/login_view.php';
             </button>
           </div>
           <div class="trip__grid">
-            <?php check_profile_errors(); ?>
             <?php if (has_no_trips($trips)): ?>
               <p>No saved trips yet.</p>
             <?php else: ?>
@@ -104,7 +106,7 @@ require_once 'includes/views/login_view.php';
                     <div>
                       <h3><?php echo htmlspecialchars($trip['itinerary_name']); ?></h3>
                       <p>
-                        <?php echo $trip['total_days']; ?> Days •
+                        <?php echo $trip['total_days']; ?> Day/s •
                         <?php echo $trip['total_activities']; ?> Activities
                       </p>
                     </div>
@@ -123,5 +125,72 @@ require_once 'includes/views/login_view.php';
         </div>
       </div>
     </section>
+
+    <div class="modal__overlay" id="profile-modal">
+      <div class="login__container" style="padding: 0; max-width: 500px; width: 100%;">
+        <div class="login__card" style="position: relative; width: 100%;">
+          
+          <button type="button" class="modal__close" id="close-profile-modal" style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; font-size: 1.5rem; cursor: pointer; color: inherit;">
+            <i class="ri-close-line"></i>
+          </button>
+
+          <h2>Edit Profile</h2>
+          <p class="login__description">
+            Update your account information details below.
+          </p>
+
+          <form action="profile.php" method="POST">
+            <div class="input__group" style="margin-bottom: 15px; text-align: left;">
+              <label for="username" style="display: block; margin-bottom: 5px; font-weight: 600;">Username</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value="<?php echo htmlspecialchars($_SESSION["user_username"] ?? ''); ?>"
+                required
+              />
+            </div>
+            
+            <div class="input__group" style="margin-bottom: 15px; text-align: left;">
+              <label for="email" style="display: block; margin-bottom: 5px; font-weight: 600;">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value="<?php echo htmlspecialchars($_SESSION["user_email"] ?? ''); ?>"
+                required
+              />
+            </div>
+
+            <div class="input__group" style="margin-bottom: 15px; text-align: left;">
+              <label for="contact" style="display: block; margin-bottom: 5px; font-weight: 600;">Contact Number</label>
+              <input
+                type="text"
+                id="contact"
+                name="contact"
+                value="<?php echo htmlspecialchars($_SESSION["user_contact"] ?? ''); ?>"
+                required
+              />
+            </div>
+
+            <div class="input__group" style="margin-bottom: 20px; text-align: left;">
+              <label for="address" style="display: block; margin-bottom: 5px; font-weight: 600;">Address</label>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                value="<?php echo htmlspecialchars($_SESSION["user_address"] ?? ''); ?>"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn login__btn" style="width: 100%;">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/profile.js" defer></script>
+    <script src="js/toast.js" defer></script>
   </body>
 </html>

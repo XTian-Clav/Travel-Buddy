@@ -2,6 +2,7 @@
 require_once 'includes/config.php';
 require_once 'includes/guest.php';
 require_once 'includes/views/login_view.php';
+require_once 'includes/views/register_view.php';
 ?>
 
 <!DOCTYPE html>
@@ -17,8 +18,11 @@ require_once 'includes/views/login_view.php';
     <title>Travel Buddy | Login</title>
 
     <script src="js/password-toggle.js" defer></script>
+    <script src="js/toast.js" defer></script>
   </head>
   <body>
+    <?php check_register_errors(); ?>
+    
     <nav>
       <div class="nav__header">
         <div class="nav__logo">

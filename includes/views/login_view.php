@@ -38,13 +38,31 @@ function check_login_errors() {
     if (isset($_SESSION["errors_login"])) {
         $errors = $_SESSION["errors_login"];
 
+        echo '<div id="toast-container">';
         foreach ($errors as $error) {
-            echo '<div class="form-error">' . $error . '</div>';
+            echo '
+            <div class="toast toast--error">
+              <div class="toast__content">
+                <i class="ri-error-warning-line" style="font-size: 1.2rem;"></i>
+                <span>' . htmlspecialchars($error) . '</span>
+              </div>
+              <button type="button" class="toast__close-btn"><i class="ri-close-line"></i></button>
+            </div>';
         }
+        echo '</div>';
 
         unset($_SESSION["errors_login"]);
     }
     else if (isset($_GET["login"]) && $_GET["login"] === "success") {
-        echo '<div class="form-success">Registration Successful!</div>';
+        echo '
+        <div id="toast-container">
+          <div class="toast toast--success">
+            <div class="toast__content">
+              <i class="ri-checkbox-circle-line" style="font-size: 1.2rem;"></i>
+              <span>Login Successful!</span>
+            </div>
+            <button type="button" class="toast__close-btn"><i class="ri-close-line"></i></button>
+          </div>
+        </div>';
     }
 }

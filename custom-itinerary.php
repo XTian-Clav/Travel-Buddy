@@ -264,5 +264,6 @@ require_once 'includes/views/custom_view.php';
     </section>
 
     <script src="js/custom-itinerary.js" defer></script>
+    <script src="js/toast.js" defer></script>
   </body>
 </html>

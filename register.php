@@ -18,6 +18,7 @@ require_once 'includes/views/register_view.php';
 
     <script src="js/password-toggle.js" defer></script>
     <script src="js/terms-modal.js" defer></script>
+    <script src="js/toast.js" defer></script>
   </head>
   <body>
     <nav>

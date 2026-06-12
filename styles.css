@@ -523,35 +523,77 @@ nav {
   font-weight: 600;
 }
 
-.form-error {
-  display: block;
-  width: 100%;
+#toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.toast {
+  padding: 14px 20px;
+  border-radius: var(--border-radius-small, 6px);
+  font-weight: 600;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-width: 320px;
+  max-width: 450px;
   box-sizing: border-box;
-  background-color: #fde8e8;
-  color: #9b1c1c;
-  border: 1px solid #f8b4b4;
-  padding: 0.75rem 1rem;
-  border-radius: var(--border-radius-small);
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  font-size: 0.8rem;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
   line-height: 1.4;
 }
 
-.form-success {
+.toast__content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.toast__content i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.toast--error {
+  background-color: #fde8e8;
+  color: #9b1c1c;
+  border: 1px solid #f8b4b4;
+}
+
+.toast--success {
   background-color: #def7ec;
   color: #03543f;
   border: 1px solid #84e1bc;
-  padding: 0.5rem 1rem;
-  border-radius: var(--border-radius-small);
-  display: inline-block;
-  margin-bottom: 0.5rem;
-  font-size: 0.8rem;
 }
 
-.form-error:empty,
-.form-success:empty {
-  display: none !important;
+.toast__close-btn {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.toast__close-btn:hover {
+  opacity: 1;
 }
 
 .tour {

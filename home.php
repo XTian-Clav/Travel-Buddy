@@ -1,6 +1,7 @@
 <?php
 require_once 'includes/config.php';
 require_once 'includes/auth.php';
+require_once 'includes/views/login_view.php';
 ?>
 
 <!DOCTYPE html>
@@ -14,8 +15,11 @@ require_once 'includes/auth.php';
     />
     <link rel="stylesheet" href="styles.css" />
     <title>Travel Buddy | Home Page</title>
+
+    <script src="js/toast.js" defer></script>
   </head>
   <body>
+    <?php check_login_errors(); ?>
     <nav>
       <div class="nav__header">
         <div class="nav__logo">

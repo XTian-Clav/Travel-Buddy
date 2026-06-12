@@ -338,5 +338,6 @@ require_once 'includes/views/predefined_view.php';
     </div>
 
     <script src="js/predefined.js" defer></script>
+    <script src="js/toast.js" defer></script>
   </body>
 </html>
