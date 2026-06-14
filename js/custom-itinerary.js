@@ -3,7 +3,7 @@ const totalSteps = 3;
 
 document.addEventListener("DOMContentLoaded", () => {
   const startDateInput = document.getElementById("start_date");
-  const endDateInput = document.getElementById("end_date"); // <-- Add this
+  const endDateInput = document.getElementById("end_date");
   const today = new Date();
   const year = today.getFullYear();
   const month = String(today.getMonth() + 1).padStart(2, "0");
@@ -16,11 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const activitiesData = [
+  //El Nido Activities
   {
     id: "kayaking",
     title: "Kayaking",
     desc: "Paddle through calm and scenic coastlines.",
     price: 1500,
+    location: "elnido",
     img: "assets/kayaking.webp",
   },
   {
@@ -28,6 +30,7 @@ const activitiesData = [
     title: "Beach Day Out",
     desc: "Relax, swim, and sunbathe on golden sands.",
     price: 2000,
+    location: "elnido",
     img: "assets/nacpan.webp",
   },
   {
@@ -35,6 +38,7 @@ const activitiesData = [
     title: "Private Snorkeling",
     desc: "Explore vibrant marine life with a personal guide.",
     price: 3800,
+    location: "elnido",
     img: "assets/snorkeling.webp",
   },
   {
@@ -42,6 +46,7 @@ const activitiesData = [
     title: "Sunset Dinner",
     desc: "Savor a beachfront multi-course meal at sunset.",
     price: 1200,
+    location: "elnido",
     img: "assets/sunset-dinner.webp",
   },
   {
@@ -49,6 +54,7 @@ const activitiesData = [
     title: "Island Hopping Tour",
     desc: "Cruise to hidden beaches and tropical lagoons.",
     price: 2800,
+    location: "elnido",
     img: "assets/island-tour.webp",
   },
   {
@@ -56,7 +62,58 @@ const activitiesData = [
     title: "Spa & Massage",
     desc: "Unwind with a premium relaxation treatment.",
     price: 1500,
+    location: "elnido",
     img: "assets/spa.webp",
+  },
+
+  //Coron Activities
+  {
+    id: "mt-tapyas",
+    title: "Mount Tapyas Viewpoint",
+    desc: "Climb to the scenic viewpoint overlooking Coron Bay.",
+    price: 1600,
+    location: "coron",
+    img: "assets/mt.tapyas.webp",
+  },
+  {
+    id: "beach-day-coron",
+    title: "Beach Day Out (Malcapuya)",
+    desc: "Relax, swim, and sunbathe on golden sands.",
+    price: 2000,
+    location: "coron",
+    img: "assets/malcapuya-island.webp",
+  },
+  {
+    id: "banana-island",
+    title: "Banana Island",
+    desc: "Relax on white sand beaches and swim in clear turquoise waters.",
+    price: 2650,
+    location: "coron",
+    img: "assets/banana-island.webp",
+  },
+  {
+    id: "smith-beach",
+    title: "Sunset at Smith Beach",
+    desc: "A peaceful tropical escape featuring pristine white sands and crystal-clear waters.",
+    price: 800,
+    location: "coron",
+    img: "assets/smith-beach.webp",
+  },
+  {
+    id: "calauit-safari",
+    title: "Calauit Safari Park",
+    desc: "An island safari adventure featuring exotic wildlife like giraffes and zebras.",
+    price: 2500,
+    location: "coron",
+    img: "assets/calauit.webp",
+  },
+  {
+    id: "maquinit-hotspring",
+    title: "Maquinit Hot Spring",
+    desc: "A rare natural saltwater hot spring surrounded by relaxing mangroves.",
+    price: 1000,
+    location: "coron",
+    img: "assets/maquinit.webp",
   },
 ];
 
@@ -101,6 +158,15 @@ function generateDayTabs(totalDays) {
     return;
   }
 
+  const selectedDest = document.querySelector(
+    ".destination-radio:checked"
+  )?.value;
+  if (!selectedDest) return;
+
+  const filteredActivities = activitiesData.filter(
+    (act) => act.location === selectedDest
+  );
+
   for (let d = 1; d <= totalDays; d++) {
     const tabBtn = document.createElement("button");
     tabBtn.type = "button";
@@ -116,7 +182,7 @@ function generateDayTabs(totalDays) {
     }`;
     pane.id = `day-pane-${d}`;
 
-    activitiesData.forEach((act) => {
+    filteredActivities.forEach((act) => {
       pane.innerHTML += `
           <div class="wizard__card">
             <img src="${act.img}" alt="${act.title}" />
@@ -128,9 +194,11 @@ function generateDayTabs(totalDays) {
                 <label class="btn action-btn-label" id="label-${d}-${act.id}">
                   <input type="checkbox" name="activities[day_${d}][]" value="${
         act.id
-      }" data-price="${act.price}" data-title="${act.title}" data-img="${
-        act.img
-      }" class="activity-checkbox" onchange="handleCheckboxState(this, ${d}, '${
+      }" 
+                    data-price="${act.price}" data-title="${
+        act.title
+      }" data-img="${act.img}" 
+                    class="activity-checkbox" onchange="handleCheckboxState(this, ${d}, '${
         act.id
       }')" />
                   <span><i class="ri-add-line"></i> Add</span>
@@ -303,13 +371,18 @@ document.getElementById("end_date").addEventListener("change", () => {
 
 document.querySelectorAll(".destination-radio").forEach((radio) => {
   radio.addEventListener("change", () => {
-    if (radio.checked) {
-      document.getElementById("selected-dest-name").textContent = radio.value;
-      document.getElementById("selected-dest-preview").src =
-        radio.getAttribute("data-img");
-      currentStep = 2;
-      renderStep(currentStep);
+    const start = document.getElementById("start_date")?.value;
+    const end = document.getElementById("end_date")?.value;
+
+    if (start && end) {
+      const totalDays =
+        Math.floor((new Date(end) - new Date(start)) / (1000 * 60 * 60 * 24)) +
+        1;
+      generateDayTabs(totalDays);
     }
+
+    currentStep = 2;
+    renderStep(currentStep);
   });
 });
 

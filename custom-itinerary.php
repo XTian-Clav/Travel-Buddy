@@ -81,7 +81,7 @@ require_once 'includes/views/custom_view.php';
 
             <div class="wizard__destination__grid">
               <label class="wizard__destination__card">
-                <input type="radio" name="destination" value="El Nido" class="destination-radio" data-img="assets/big-lagoon.webp" />
+                <input type="radio" name="destination" value="elnido" class="destination-radio" data-img="assets/big-lagoon.webp" />
                 <img src="assets/big-lagoon.webp" alt="El Nido" />
                 <div class="wizard__destination__overlay">
                   <div class="wizard__destination__badge">
@@ -91,7 +91,7 @@ require_once 'includes/views/custom_view.php';
               </label>
 
               <label class="wizard__destination__card">
-                <input type="radio" name="destination" value="Coron" class="destination-radio" data-img="assets/coron.webp" />
+                <input type="radio" name="destination" value="coron" class="destination-radio" data-img="assets/coron.webp" />
                 <img src="assets/coron.webp" alt="Coron" />
                 <div class="wizard__destination__overlay">
                   <div class="wizard__destination__badge">
